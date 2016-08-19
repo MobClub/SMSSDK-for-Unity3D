@@ -1,0 +1,17 @@
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/UnityEngine.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/UnityEditor.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Mono.Cecil.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Unity.DataContract.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/liyuansheng/Desktop/Unity3DForSMSSDK/obj/Debug/Assembly-CSharp-firstpass.dll.mdb

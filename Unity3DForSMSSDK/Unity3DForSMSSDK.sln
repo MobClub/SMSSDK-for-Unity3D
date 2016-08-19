@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{C99F471B-59C5-CAA6-E5EE-1DBBD87078A9}") = "Unity3DForSMSSDK", "Assembly-CSharp-firstpass.csproj", "{B49C4258-116C-B235-1DCD-242D7B8FD793}"
+EndProject
+Project("{C99F471B-59C5-CAA6-E5EE-1DBBD87078A9}") = "Unity3DForSMSSDK", "Assembly-CSharp.csproj", "{E4EBB8EC-A528-631B-402A-7D080018A1F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49C4258-116C-B235-1DCD-242D7B8FD793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49C4258-116C-B235-1DCD-242D7B8FD793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49C4258-116C-B235-1DCD-242D7B8FD793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49C4258-116C-B235-1DCD-242D7B8FD793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EBB8EC-A528-631B-402A-7D080018A1F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EBB8EC-A528-631B-402A-7D080018A1F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EBB8EC-A528-631B-402A-7D080018A1F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EBB8EC-A528-631B-402A-7D080018A1F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
