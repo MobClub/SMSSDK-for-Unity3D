@@ -40,7 +40,10 @@ namespace cn.SMSSDK.Unity
 			GUI.skin = demoSkin;
 
 			float scale = 1.0f;
-			scale = Screen.width / 380;
+			if (Application.platform == RuntimePlatform.IPhonePlayer)
+			{
+				scale = Screen.width / 320;
+			}
 
 
 			float btnWidth = 200 * scale;
