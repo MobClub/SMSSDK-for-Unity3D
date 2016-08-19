@@ -16,7 +16,7 @@ namespace cn.SMSSDK.Unity
 	Debug.Log("AndroidImpl  ===>>>  AndroidImpl");
 	try
 	{
-	smssdkgui = new AndroidJavaObject("cn.smssdk.unity3d.SMSSDKGUI", go.name, "_Callback");
+	smssdkgui = new AndroidJavaObject("cn.smssdk.unity3d.SMSSDKGUI", go.name, "_callBack");
 	}
 	catch (Exception e)
 	{
@@ -24,7 +24,7 @@ namespace cn.SMSSDK.Unity
 	}
 	}
 
-	public void init(string appKey, string appsecret, bool isWarn)
+	public override void init(string appKey, string appsecret, bool isWarn)
 	{
 	Debug.Log("AndroidImpl ==>>> InitSDK ===" + appKey + ";" + appsecret);
 	if (smssdkgui != null)
@@ -33,7 +33,7 @@ namespace cn.SMSSDK.Unity
 	}
 	}
 
-	public void showContactsPage()
+	public override void showContactsPage()
 	{
 	if (smssdkgui != null)
 	{
@@ -41,7 +41,7 @@ namespace cn.SMSSDK.Unity
 	}
 	}
 
-	public void showRegisterPage(CodeType getCodeMethodType)
+	public override void showRegisterPage(CodeType getCodeMethodType)
 	{
 	if (smssdkgui != null)
 	{

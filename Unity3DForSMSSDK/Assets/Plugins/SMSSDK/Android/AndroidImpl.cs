@@ -13,7 +13,7 @@ namespace cn.SMSSDK.Unity
 	{
 	Debug.Log("AndroidImpl  ===>>>  AndroidImpl" );
 	try{
-	smssdk = new AndroidJavaObject("cn.smssdk.unity3d.SMSSDKUtils", go.name, "_Callback");
+	smssdk = new AndroidJavaObject("cn.smssdk.unity3d.SMSSDKUtils", go.name, "_callBack");
 	} catch(Exception e) {
 	Console.WriteLine("{0} Exception caught.", e);
 	}
@@ -68,7 +68,7 @@ namespace cn.SMSSDK.Unity
 	{
 	Debug.Log("AndroidImpl ==>>> submitUserInfo ===");
 	if(smssdk != null) {
-	smssdk.Call("submitUserInfo", userInfo.Uid,userInfo.Nickname,userInfo.Avatar,userInfo.Country,userInfo.Phone);
+	smssdk.Call("submitUserInfo", userInfo.uid,userInfo.nickName,userInfo.avatar,userInfo.zone,userInfo.phoneNumber);
 	}
 	}
 

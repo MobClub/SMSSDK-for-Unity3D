@@ -11,14 +11,17 @@ namespace cn.SMSSDK.Unity
 		public GUISkin demoSkin;
 		public SMSSDK smssdk;
 		public UserInfo userInfo;
+
+		private string phone = "18520021709";
+		private string zone = "86";
 		private string code = "";
-		public string result = null;
+		private string result = null;
 
 
 		void Start () 
 		{
 			smssdk = gameObject.GetComponent<SMSSDK>();
-			smssdk.init ("114d7a34cf7ea","678ff550d7328de446585757c4e5de3f",true);
+			smssdk.init("114d7a34cf7ea","678ff550d7328de446585757c4e5de3f",false);
 			userInfo = new UserInfo ();
 			smssdk.setHandler(this);
 		}
@@ -37,11 +40,8 @@ namespace cn.SMSSDK.Unity
 			GUI.skin = demoSkin;
 
 			float scale = 1.0f;
+			scale = Screen.width / 380;
 
-			if (Application.platform == RuntimePlatform.IPhonePlayer)
-			{
-				scale = Screen.width / 320;
-			}
 
 			float btnWidth = 200 * scale;
 			float btnHeight = 35 * scale;
@@ -50,15 +50,15 @@ namespace cn.SMSSDK.Unity
 
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeSMS"))
 			{
-				smssdk.getCode (CodeType.TextCode,"18616261983","86");
+				smssdk.getCode (CodeType.TextCode, phone, "86");
 			}
-				
+
 
 			btnTop += btnHeight + 20 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
 			{
 
-				smssdk.getCode (CodeType.VoiceCode,"18616261983","86");
+				smssdk.getCode (CodeType.VoiceCode, phone, "86");
 			}
 
 			//添加textField  输入验证码
@@ -68,7 +68,7 @@ namespace cn.SMSSDK.Unity
 			btnTop += btnHeight + 20 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "CommitCode"))
 			{
-				smssdk.commitCode ("18616261983","86",code);
+				smssdk.commitCode (phone, "86",code);
 			}
 
 
@@ -90,7 +90,8 @@ namespace cn.SMSSDK.Unity
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "SubmitUserInfo"))
 			{
 				userInfo.avatar = "www.mob.com";
-				userInfo.phoneNumber = "18616261983";
+				userInfo.phoneNumber = phone;
+				userInfo.zone = zone;
 				userInfo.nickName = "David";
 				userInfo.uid = "18616261983";
 				smssdk.submitUserInfo (userInfo);
@@ -99,12 +100,12 @@ namespace cn.SMSSDK.Unity
 			btnTop += btnHeight + 20 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetVersionNumber"))
 			{
-				
+
 				smssdk.getVersion ();
 			}
 
 			btnTop += btnHeight + 20 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "Authorization"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "EnableWarn"))
 			{
 				smssdk.enableWarn (true);
 			}
@@ -122,17 +123,21 @@ namespace cn.SMSSDK.Unity
 			{
 				smssdk.showContactsPage ();
 			}
+			//展示回调结果
+			btnTop += btnHeight + 20 * scale;
+			GUI.Label(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), result);
 		}
 
 		public void onComplete(int action, object resp)
 		{
 			ActionType act = (ActionType)action;
-			result = resp.ToString();
+			if (resp != null)
+			{
+				result = resp.ToString();
+			}
 			if (act == ActionType.GetCode) {
 				string responseString = (string)resp;
 				Debug.Log ("isSmart :" + responseString);
-
-
 			} else if (act == ActionType.GetVersion) {
 				string version = (string)resp;
 				Debug.Log ("version :" + version);
@@ -142,11 +147,10 @@ namespace cn.SMSSDK.Unity
 
 				string responseString = (string)resp;
 				Debug.Log ("zoneString :" + responseString);
-				
+
 			} else if (act == ActionType.GetFriends) {
 				string responseString = (string)resp;
 				Debug.Log ("friendsString :" + responseString);
-
 
 			} else if (act == ActionType.CommitCode) {
 
@@ -159,12 +163,12 @@ namespace cn.SMSSDK.Unity
 				Debug.Log ("submitString :" + responseString);
 
 			} else if (act == ActionType.ShowRegisterView) {
-			
+
 				string responseString = (string)resp;
 				Debug.Log ("showRegisterView :" + responseString);
 
 			} else if (act == ActionType.ShowContractFriendsView) {
-			
+
 				string responseString = (string)resp;
 				Debug.Log ("showContractFriendsView :" + responseString);
 			}
