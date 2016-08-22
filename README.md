@@ -61,8 +61,13 @@ This two APIs bellow is GUI APIs.
 
 	showRegisterPage(CodeType getCodeMethodType)
 	showContactsPage()
+## For Android setting
+If you don't want to  use this GUI, you can remove ShortMessageSDKGUI fold under Assets/Plugins/Android. This ShortMessageSDKGUI library is open source at [SMSSDK for Android](https://github.com/MobClub/SMSSDK-for-Android),you can modify whatever you want to do.
 
-If you dont want to  use this GUI, you can remove ShortMessageSDKGUI fold under Assets/Plugins/Android. This ShortMessageSDKGUI library is open source at [SMSSDK for Android](https://github.com/MobClub/SMSSDK-for-Android),you can modify whatever you want to do.
+## For iOS setting
+If you don't want to  use this GUI,you can note the methods in SMSSDK.cs,or do nothing in the method'body in the bridge file of your xcode project.
+
+Until now,the Unity party is everything ok,the next you need to import the SMSSDK to the project.If your want to see the method of importting the SDK,please click here:The Document of importting SMSSDK
 
 **Finally, if you have any other questions, please do not be hesitate to contact us:**
 
