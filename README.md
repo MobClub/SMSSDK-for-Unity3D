@@ -67,7 +67,7 @@ If you don't want to  use this GUI, you can remove ShortMessageSDKGUI fold under
 ## For iOS setting
 If you don't want to  use this GUI,you can note the methods in SMSSDK.cs,or do nothing in the method'body in the bridge file of your xcode project.
 
-Until now,the Unity party is everything ok,the next you need to import the SMSSDK to the project.If your want to see the method of importting the SDK,please click here:The Document of importting SMSSDK
+Until now,the Unity party is everything ok,the next you need to import the SMSSDK to the project.If your want to see the method of importting the SDK,please click here:[The Document of importting SMSSDK for iOS](https://github.com/MobClub/SMSSDK-for-iOS)
 
 **Finally, if you have any other questions, please do not be hesitate to contact us:**
 
