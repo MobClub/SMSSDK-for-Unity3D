@@ -27,9 +27,9 @@ App Key on first line is appkey from SMSSDK. You could get that from our website
 
 1.Please import Name Space first :
 
-        using cn.smssdk.unity3d;
+> * using cn.smssdk.unity3d;
 
-        private SMSSDK smssdk;
+> * private SMSSDK smssdk;
         
 2.Use your own  Appkey and AppSecret to initialize SDK
 
@@ -71,8 +71,8 @@ Until now,the Unity party is everything ok,the next you need to import the SMSSD
 
 **Finally, if you have any other questions, please do not be hesitate to contact us:**
 
-- Customer Service QQ : 4006852216
+> * Customer Service QQ : 4006852216
 
-- or Skype:amber
+> * or Skype:amber
 
 More information About SMSSDK, please visit our website [Mob.com](http://www.mob.com
