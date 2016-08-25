@@ -39,7 +39,9 @@ public class SMSSDKUtils {
     }
 
     public void init(String appKey, String appSecret, boolean isWarn) {
-        Looper.prepare();
+        if(Looper.myLooper() == null) {
+            Looper.prepare();
+        }
         if (TextUtils.isEmpty(appKey) || TextUtils.isEmpty(appSecret))
             return;
         SMSSDK.initSDK(context,appKey,appSecret,isWarn);
