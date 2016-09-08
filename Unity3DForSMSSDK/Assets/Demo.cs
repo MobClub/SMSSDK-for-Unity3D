@@ -12,7 +12,8 @@ namespace cn.SMSSDK.Unity
 		public SMSSDK smssdk;
 		public UserInfo userInfo;
 
-		private string phone = "18520021709";
+		//please add your phone number
+		private string phone = "";
 		private string zone = "86";
 		private string code = "";
 		private string result = null;
