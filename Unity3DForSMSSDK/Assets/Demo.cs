@@ -72,7 +72,7 @@ namespace cn.SMSSDK.Unity
 			btnTop += btnHeight + 20 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "CommitCode"))
 			{
-				smssdk.commitCode (phone, "86",code);
+				smssdk.commitCode ("86", phone,code);
 			}
 
 
