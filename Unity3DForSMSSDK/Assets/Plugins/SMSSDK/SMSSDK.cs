@@ -130,10 +130,10 @@ namespace cn.SMSSDK.Unity
 		/// <param name="verificationCode">Verification code.</param>
 		/// <param name="phoneNumber">Phone number.</param>
 		/// <param name="zone">Zone.</param>
-		public void commitCode (string zone, string phoneNumber,string verificationCode)
+		public void commitCode (string verificationCode, string phoneNumber,string zone)
 		{
 			if (smssdkImpl != null) {
-				smssdkImpl.commitCode (zone, phoneNumber, verificationCode);
+				smssdkImpl.commitCode (verificationCode, phoneNumber, zone);
 			}
 		}
 

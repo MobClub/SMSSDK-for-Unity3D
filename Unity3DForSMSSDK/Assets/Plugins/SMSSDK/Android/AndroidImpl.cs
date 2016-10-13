@@ -40,7 +40,7 @@ namespace cn.SMSSDK.Unity
 	}
 
 
-	public override void commitCode(string zone, string phoneNumber, string code)
+	public override void commitCode(string phoneNumber, string zone, string code)
 	{
 	Debug.Log("AndroidImpl ==>>> commitCode" + zone + ";" + phoneNumber + ";" + code);
 	if(smssdk != null) {

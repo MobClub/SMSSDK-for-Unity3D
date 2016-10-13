@@ -47,7 +47,7 @@ namespace cn.SMSSDK.Unity
 		/// <param name="phoneNumber">Phone number.</param>
 		/// <param name="zone">Zone.</param>
 		/// <param name="verificationCode">Verification code.</param>
-		public abstract void commitCode (string zone, string phoneNumber, string verificationCode);
+		public abstract void commitCode (string phoneNumber, string zone, string verificationCode);
 
 
 
