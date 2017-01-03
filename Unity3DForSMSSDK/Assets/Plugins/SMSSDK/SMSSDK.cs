@@ -45,7 +45,7 @@ namespace cn.SMSSDK.Unity
 		/// <param name="callBackData">Call back data.</param>
 		private void _callBack (string callBackData)
 		{
-			print ("从OC层回调到C#层");
+//			print ("从OC层回调到C#层");
 
 			if (callBackData == null)
 			{
@@ -57,7 +57,7 @@ namespace cn.SMSSDK.Unity
 			{
 				return;
 			}
-			print ("Hashtable*******数据"+ res);
+//			print ("Hashtable*******数据"+ res);
 			int status = Convert.ToInt32(res["status"]);
 			int action = Convert.ToInt32(res["action"]);
 			// Success = 1, Fail = 2
@@ -67,7 +67,7 @@ namespace cn.SMSSDK.Unity
 				{ 
 					Debug.Log(callBackData);
 					object resp = res["res"];
-					print ("回调成功"+resp);
+//					print ("回调成功"+resp);
 					if(handler != null)
 						handler.onComplete(action, resp);
 					break;
@@ -76,7 +76,7 @@ namespace cn.SMSSDK.Unity
 				{
 					Debug.Log(callBackData);
 					object throwable = res["res"];
-					print ("回调失败" + throwable);
+//					print ("回调失败" + throwable);
 					if (handler != null)
 						handler.onError(action, throwable);
 					break;

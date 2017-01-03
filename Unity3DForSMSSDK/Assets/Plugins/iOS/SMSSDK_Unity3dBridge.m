@@ -11,7 +11,15 @@
 #import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
 #import <SMS_SDK/Extend/SMSSDK+ExtexdMethods.h>
 #import <MOBFoundation/MOBFoundation.h>
+
+/**
+ *  使用SMSSDKUI标志，YES 使用，NO 不使用。
+ */
+#define _SMSSDKUI   1
+
+#if _SMSSDKUI
 #import "SMSSDKUI.h"
+#endif
 
 #if defined (__cplusplus)
 extern "C" {
@@ -33,9 +41,10 @@ extern "C" {
     
     extern void __iosEnableAppContractFriends (BOOL state);
     
-    
+#if _SMSSDKUI
     //Demo UI
     extern void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer);
+#endif
     
     extern void __showContractFriendsView (void *observer);
     
@@ -311,6 +320,8 @@ extern "C" {
     }
     
     
+#if _SMSSDKUI
+    
     //SMSSDK_Demo UI
     
     void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer)
@@ -397,6 +408,8 @@ extern "C" {
         }
         
     }
+    
+#endif
     
     @implementation SMSSDK_Unity3dBridge
 
