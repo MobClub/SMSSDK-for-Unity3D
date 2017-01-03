@@ -44,9 +44,10 @@ extern "C" {
 #if _SMSSDKUI
     //Demo UI
     extern void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer);
-#endif
+
     
     extern void __showContractFriendsView (void *observer);
+#endif
     
 #if defined (__cplusplus)
 }
