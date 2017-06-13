@@ -13,7 +13,7 @@ namespace cn.SMSSDK.Unity
 
 	public AndroidGUIImpl(GameObject go)
 	{
-	Debug.Log("AndroidImpl  ===>>>  AndroidImpl");
+			Debug.Log("[SMSSDK]AndroidGUIImpl  ===>>>  AndroidGUIImpl");
 	try
 	{
 	smssdkgui = new AndroidJavaObject("cn.smssdk.unity3d.SMSSDKGUI", go.name, "_callBack");
@@ -26,7 +26,7 @@ namespace cn.SMSSDK.Unity
 
 	public override void init(string appKey, string appsecret, bool isWarn)
 	{
-	Debug.Log("AndroidImpl ==>>> InitSDK ===" + appKey + ";" + appsecret);
+			Debug.Log("[SMSSDK]AndroidGUIImpl ==>>> InitSDK ===" + appKey + ";" + appsecret);
 	if (smssdkgui != null)
 	{
 	smssdkgui.Call("init", appKey, appsecret, isWarn);

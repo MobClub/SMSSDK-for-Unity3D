@@ -7,6 +7,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.mob.MobSDK;
 import com.mob.tools.utils.Hashon;
 import com.mob.tools.utils.UIHandler;
 import com.unity3d.player.UnityPlayer;
@@ -180,7 +181,10 @@ public class SMSSDKUtils implements Callback {
 
                 if (TextUtils.isEmpty(appKey) || TextUtils.isEmpty(appSecret))
                     break;
-                SMSSDK.initSDK(context,appKey,appSecret,isWarn);
+				MobSDK.init(context, appKey, appSecret);
+				if (isWarn) {
+					SMSSDK.setAskPermisionOnReadContact(isWarn);
+				}
                 EventHandler handler = new EventHandler(){
                     public void afterEvent(int event, int result, Object data) {
                         String resp = JavaTools.javaActionResToCS(event, result, data);
@@ -238,7 +242,7 @@ public class SMSSDKUtils implements Callback {
             break;
             case MSG_ENABLE_WARN: {
                 boolean isWarn = msg.getData().getBoolean("isWarn");
-                SPHelper.getInstance(context).setWarnWhenReadContact(isWarn);
+                SPHelper.getInstance().setWarnWhenReadContact(isWarn);
             }
                 break;
         }

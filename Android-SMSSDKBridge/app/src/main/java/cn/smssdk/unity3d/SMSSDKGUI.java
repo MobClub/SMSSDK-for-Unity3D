@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Looper;
 import android.text.TextUtils;
 
+import com.mob.MobSDK;
 import com.unity3d.player.UnityPlayer;
 
 import java.util.HashMap;
@@ -42,7 +43,10 @@ public class SMSSDKGUI {
             Looper.prepare();
         if (TextUtils.isEmpty(appKey) || TextUtils.isEmpty(appSecret))
             return;
-        SMSSDK.initSDK(context,appKey,appSecret,isWarn);
+		MobSDK.init(context, appKey, appSecret);
+		if (isWarn) {
+			SMSSDK.setAskPermisionOnReadContact(isWarn);
+		}
     }
 
     //#if def{lang} == cn

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.smssdk"
-    android:versionCode="24"
-    android:versionName="2.1.1" >
+    android:versionCode="28"
+    android:versionName="3.0.0" >
 
 	    <!--PROTECTION_NORMAL -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

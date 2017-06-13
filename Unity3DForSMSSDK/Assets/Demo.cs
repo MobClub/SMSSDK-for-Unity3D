@@ -21,8 +21,9 @@ namespace cn.SMSSDK.Unity
 
 		void Start () 
 		{
+			Debug.Log("[SMSSDK]Demo  ===>>>  Start" );
 			smssdk = gameObject.GetComponent<SMSSDK>();
-			smssdk.init("114d7a34cf7ea","678ff550d7328de446585757c4e5de3f",false);
+			smssdk.init("moba6b6c6d6","b89d2427a3bc7ad1aea1e1e8c1d36bf3",true);
 			userInfo = new UserInfo ();
 			smssdk.setHandler(this);
 		}

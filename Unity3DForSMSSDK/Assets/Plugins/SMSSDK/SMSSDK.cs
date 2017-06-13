@@ -12,8 +12,8 @@ namespace cn.SMSSDK.Unity
 		private SMSSDKGUIInterface smsSDKGUIImpl;
 		//注:此处区分仅为demo测试而分，实际使用时可以不区分安卓或ios
 		#if UNITY_ANDROID
-		public string appKey = "12b56ad39bd3f";
-		public string appSerect = "3b9404a77ec0e0489d63d487c6a2fe9d";
+		public string appKey = "moba6b6c6d6";
+		public string appSerect = "b89d2427a3bc7ad1aea1e1e8c1d36bf3";
 		public bool isWarn = true;
 		#elif UNITY_IPHONE
 
@@ -25,6 +25,7 @@ namespace cn.SMSSDK.Unity
 
 		void Awake ()
 		{
+			Debug.Log("[SMSSDK]SMSSDK  ===>>>  Awake" );
 			#if UNITY_ANDROID
 			smssdkImpl = new AndroidImpl (gameObject);
 			smsSDKGUIImpl = new AndroidGUIImpl (gameObject);
