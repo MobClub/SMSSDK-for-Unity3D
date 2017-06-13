@@ -3,7 +3,7 @@
 **supported original SMSSDK version:**
 
 - Android - V2.0.0
-- iOS - V2.0.0
+- iOS - V3.0.0
 
 ----------------------------------------------------
 
@@ -19,9 +19,10 @@ Please notice that this operation could cover your original existed documents!
 ###### Step 2 : Add SMSSDK script and set the platforms’ information
 
 Need to add SMSSDK to GameObject(Like Main Camera). Click”Add Component” from the right-hand side bar, and choose SMSSDK to be added.
-![image](http://wiki.mob.com/wp-content/uploads/2015/09/step1.jpg)
 
-App Key on first line is appkey from SMSSDK. You could get that from our website when you register an account. 
+![Snip20170527_10.png](http://upload-images.jianshu.io/upload_images/4131265-fe527878a87cd289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+Config your appkey add appSecret. You could get that from our website when you register an account. 
 
 ###### Step 3 : Use SDK
 
@@ -30,37 +31,33 @@ App Key on first line is appkey from SMSSDK. You could get that from our website
 > * using cn.smssdk.unity3d;
 
 > * private SMSSDK smssdk;
-        
-2.Use your own  Appkey and AppSecret to initialize SDK
 
-		smssdk = gameObject.GetComponent<SMSSDK>();
-		smssdk.init("114d7a34cf7ea","678ff550d7328de446585757c4e5de3f",false);
 
-3.Implements SMSSDKHandler and set it to SDK
+2.Implements SMSSDKHandler and set it to SDK
 
 add a class to implement SMSSDKHandler, then set it to SDK to handle callback
 
-        class Demo:SMSSDKHandler
-		....
-		smssdk.setHandler(demo);
+class Demo:SMSSDKHandler
+....
+smssdk.setHandler(demo);
 
-4.now you can use SDK to do something
+3.now you can use SDK to do something
 
-		smssdk.getCode(CodeType.TextCode,"86","18688888888");
-		smssdk.getFriends();
+smssdk.getCode(CodeType.TextCode,"86","18688888888");
+smssdk.getFriends();
 
 #### About Callback data
 Some APIs will send data to your SMSSDKHandler.This callback data is a json string.You can use  any JSON library to handle it.The action is what API you call.
 
-	onComplete(int action, object resp)
-	onError(int action, object resp)
+onComplete(int action, object resp)
+onError(int action, object resp)
 
 #### About GUI
 
 This two APIs bellow is GUI APIs.
 
-	showRegisterPage(CodeType getCodeMethodType)
-	showContactsPage()
+showRegisterPage(CodeType getCodeMethodType)
+showContactsPage()
 ## For Android setting
 If you don't want to  use this GUI, you can remove ShortMessageSDKGUI fold under Assets/Plugins/Android. This ShortMessageSDKGUI library is open source at [SMSSDK for Android](https://github.com/MobClub/SMSSDK-for-Android),you can modify whatever you want to do.
 

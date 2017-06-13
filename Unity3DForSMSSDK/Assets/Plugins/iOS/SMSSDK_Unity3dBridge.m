@@ -8,18 +8,9 @@
 
 #import "SMSSDK_Unity3dBridge.h"
 #import <SMS_SDK/SMSSDK.h>
-#import <SMS_SDK/Extend/SMSSDK+AddressBookMethods.h>
-#import <SMS_SDK/Extend/SMSSDK+ExtexdMethods.h>
+#import <SMS_SDK/SMSSDK+ContactFriends.h>
 #import <MOBFoundation/MOBFoundation.h>
 #import "SMSSDKUI.h"
-///**
-// *  使用SMSSDKUI标志，YES 使用，NO 不使用。
-// */
-////#define _SMSSDKUI   1
-//
-////#if _SMSSDKUI
-//#import "SMSSDKUI.h"
-////#endif
 
 #if defined (__cplusplus)
 extern "C" {
@@ -41,13 +32,11 @@ extern "C" {
     
     extern void __iosEnableAppContractFriends (BOOL state);
     
-//#if _SMSSDKUI
+    
     //Demo UI
     extern void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer);
-
     
     extern void __showContractFriendsView (void *observer);
-//#endif
     
 #if defined (__cplusplus)
 }
@@ -59,16 +48,7 @@ extern "C" {
     
     void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect(void *appKey, void * appSecret)
     {
-        NSString * appKeyStr = nil;
-        NSString * appSecretStr =nil;
-        
-        if (appKey)
-        {
-            appKeyStr = [NSString stringWithCString:appKey encoding:NSUTF8StringEncoding];
-            appSecretStr= [NSString stringWithCString:appSecret encoding:NSUTF8StringEncoding];
-        }
-        NSLog(@"appKeyStr_%@---appSecretStr_%@",appKeyStr,appSecretStr);
-        [SMSSDK registerApp:appKeyStr withSecret:appSecretStr];
+        NSLog(@"3.0.0 版本SMSSDK 的 appkey和appSecret 请配置到info.plist内");
     }
     
     void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer)
@@ -81,7 +61,7 @@ extern "C" {
         
         if (phoneNumber && zone)
         {
-            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr customIdentifier:nil result:^(NSError *error) {
+            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr result:^(NSError *error) {
                 
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                 [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"action"];
@@ -139,7 +119,7 @@ extern "C" {
             verificationCodeStr = [NSString stringWithCString:verificationCode encoding:NSUTF8StringEncoding];
             observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
             
-            [SMSSDK commitVerificationCode:verificationCodeStr phoneNumber:phoneNumberStr zone:zoneStr result:^(SMSSDKUserInfo *userInfo,NSError *error) {
+            [SMSSDK commitVerificationCode:verificationCodeStr phoneNumber:phoneNumberStr zone:zoneStr result:^(NSError *error) {
                 
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                 [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"action"];
@@ -267,8 +247,7 @@ extern "C" {
                 
             }
             
-            
-            [SMSSDK submitUserInfoHandler:userInfo result:^(NSError *error)
+            [SMSSDK submitUserInfo:userInfo result:^(NSError *error)
              {
                  NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                  [resultDic setObject:[NSNumber numberWithInt:4] forKey:@"action"];
@@ -306,7 +285,7 @@ extern "C" {
             NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
             [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
             
-            NSString *versionString = [SMSSDK SMSSDKVersion];
+            NSString *versionString = [SMSSDK version];
             [resultDic setObject:versionString forKey:@"res"];
             NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
             UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
@@ -321,8 +300,6 @@ extern "C" {
     }
     
     
-//#if _SMSSDKUI
-    
     //SMSSDK_Demo UI
     
     void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer)
@@ -331,7 +308,7 @@ extern "C" {
         {
             NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
             
-            [SMSSDKUI showVerificationCodeViewWithMetohd:smsGetCodeMethod result:^(enum SMSUIResponseState state, NSString *phoneNumber, NSString *zone, NSError *error) {
+            [SMSSDKUI showVerificationCodeViewWithMethod:smsGetCodeMethod result:^(enum SMSUIResponseState state, NSString *phoneNumber, NSString *zone, NSError *error) {
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                 
                 if (!error)
@@ -409,8 +386,6 @@ extern "C" {
         }
         
     }
-    
-//#endif
     
     @implementation SMSSDK_Unity3dBridge
 
