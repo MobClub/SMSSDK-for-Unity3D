@@ -306,81 +306,38 @@ extern "C" {
     {
         if (observer)
         {
-            NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
+            UIViewController *rootVC =[(id)[UIApplication sharedApplication].delegate rootViewController];
             
-            [SMSSDKUI showVerificationCodeViewWithMethod:smsGetCodeMethod result:^(enum SMSUIResponseState state, NSString *phoneNumber, NSString *zone, NSError *error) {
-                NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
-                
-                if (!error)
-                {
-                    if (state == SMSUIResponseStateSuccess)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                        NSString *resString = @"commitCodeSuccess";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                    }
-                    else if (state == SMSUIResponseStateCancel)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:7] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                        NSString *resString = @"showRegisterViewSuccess";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                        
-                    }
-                    else if (state == SMSUIResponseStateFail)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:7] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"status"];
-                        NSString *resString = @"showRegisterViewFailer";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                    }
-                }
-                else
-                {
-                    
-                    NSMutableDictionary * resultErrorMsg =[NSMutableDictionary dictionaryWithObjectsAndKeys:@(error.code),@"code" ,error.domain,@"domain",error.userInfo,@"userInfo",  nil];
-                    NSString *resultString = [MOBFJson jsonStringFromObject:resultErrorMsg];
-                    [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"status"];
-                    [resultDic setObject:resultString forKey:@"res"];
-                    //转化回到JSONString的状态码
-                    NSString *resultStr = [MOBFJson jsonStringFromObject:resultDic];
-                    UnitySendMessage([observerStr UTF8String], "_callBack", [resultStr UTF8String]);
-                    
-                }
-                
-            }];
+            SMSSDKUIGetCodeViewController *vc = [[SMSSDKUIGetCodeViewController alloc] initWithMethod:SMSGetCodeMethodSMS];
             
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            
+            [rootVC presentViewController:nav animated:YES completion:nil];
         }
-        
     }
     
     void __showContractFriendsView (void *observer)
     {
         if (observer)
         {
-            NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
-            
-            [SMSSDKUI showGetContactsFriendsViewWithNewFriends:[NSMutableArray array] newFriendClock:^(enum SMSResponseState state, int latelyFriendsCount) {
+            [SMSSDK getAllContactFriends:^(NSError *error, NSArray *friendsArray) {
                 
-            } result:^{
-                
-                NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
-                [resultDic setObject:[NSNumber numberWithInt:8] forKey:@"action"];
-                [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                
-                NSString *resString = @"showContractFriendsViewSuccess";
-                [resultDic setObject:resString forKey:@"res"];
-                NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                
-                UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                
+                if (error)
+                {
+                    NSLog(@"%s,%@",__func__,error);
+                }
+                else
+                {
+                    NSLog(@"%@",friendsArray);
+                    
+                    SMSSDKUIContactFriendsViewController *vc = [[SMSSDKUIContactFriendsViewController alloc] initWithContactFriends:friendsArray];
+                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                    
+                    UIViewController *rootVC =[(id)[UIApplication sharedApplication].delegate rootViewController];
+                    
+                    [rootVC presentViewController:nav animated:YES completion:nil];
+                    
+                }
             }];
             
         }
