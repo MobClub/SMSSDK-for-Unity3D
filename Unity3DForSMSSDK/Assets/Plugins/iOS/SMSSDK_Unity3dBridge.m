@@ -74,11 +74,11 @@ extern "C" {
                     //转化回到JSONString的状
                     if (smsGetCodeMethod == SMSGetCodeMethodSMS)
                     {
-                        NSLog(@"获取文本验证码成功后返回数据_%s",[resultMsg UTF8String]);
+                        NSLog(@"getTextCode Success_%s",[resultMsg UTF8String]);
                     }
                     else
                     {
-                        NSLog(@"获取语音验证码成功后返回数据_%s",[resultMsg UTF8String]);
+                        NSLog(@"getVoiceCode Success_%s",[resultMsg UTF8String]);
                     }
                     
                     NSString *resultStr = [MOBFJson jsonStringFromObject:resultDic];
@@ -126,7 +126,7 @@ extern "C" {
                 
                 if (!error)
                 {
-                    NSString *resultMsg = @"commitVerificationCode";
+                    NSString *resultMsg = @"commitVerifyCode Success";
                     [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
                     [resultDic setObject:resultMsg forKey:@"res"];
                     NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];

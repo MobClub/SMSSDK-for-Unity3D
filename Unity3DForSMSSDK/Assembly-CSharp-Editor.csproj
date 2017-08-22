@@ -141,7 +141,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>/Users/youzu/Desktop/SMSSDK-for-Unity3D/Unity3DForSMSSDK/Assets/iOSAutoPackage/Editor/SDKPorter/XCodeEditor/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>/Users/youzu/Desktop/WorkProjects/SMSSDK-for-Unity3D/Unity3DForSMSSDK/Assets/iOSAutoPackage/Editor/SDKPorter/XCodeEditor/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
