@@ -48,7 +48,7 @@ extern "C" {
     
     void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect(void *appKey, void * appSecret)
     {
-        NSLog(@"3.0.0 版本SMSSDK 的 appkey和appSecret 请配置到info.plist内");
+        NSLog(@"3.0.0 以后版本的无需注册 appkey和appSecret，已配置到info.plist内");
     }
     
     void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer)
