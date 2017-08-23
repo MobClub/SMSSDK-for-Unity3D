@@ -202,7 +202,7 @@ extern "C" {
                 {
                     NSString *friendsString = [MOBFJson jsonStringFromObject:friendsArray];
                     [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                    [resultDic setObject:friendsString forKey:@"res"];
+                    [resultDic setObject:friendsString?friendsString:@"No friends was found" forKey:@"res"];
                     NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
                     UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
                     
