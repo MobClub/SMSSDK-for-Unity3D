@@ -17,6 +17,7 @@ namespace cn.SMSSDK.Unity
 		private string zone = "86";
 		private string code = "";
 		private string result = null;
+		private string tempCode= "1319972";
 
 
 		void Start () 
@@ -76,7 +77,7 @@ namespace cn.SMSSDK.Unity
 
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeSMS"))
 			{
-				smssdk.getCode (CodeType.TextCode, phone, zone);
+				smssdk.getCode (CodeType.TextCode, phone, zone, tempCode);
 			}
 
 			btnTop += btnHeight + 10 * scale;
@@ -88,8 +89,7 @@ namespace cn.SMSSDK.Unity
 			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
 			{
-
-				smssdk.getCode (CodeType.VoiceCode, phone, zone);
+				smssdk.getCode (CodeType.VoiceCode, phone, zone, tempCode);
 			}
 				
 			btnTop += btnHeight + 10 * scale;

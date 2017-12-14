@@ -38,7 +38,7 @@ namespace cn.SMSSDK.Unity
 		/// <param name="getCodeMethod">Get code method.</param>
 		/// <param name="phoneNumber">Phone number.</param>
 		/// <param name="zone">Zone.</param>
-		public abstract void getCode (CodeType getCodeMethod, string phoneNumber, string zone);
+		public abstract void getCode (CodeType getCodeMethod, string phoneNumber, string zone, string tempCode);
 
 
 		/// <summary>

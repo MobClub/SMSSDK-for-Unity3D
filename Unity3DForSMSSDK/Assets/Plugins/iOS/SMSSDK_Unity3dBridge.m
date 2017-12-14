@@ -18,7 +18,7 @@ extern "C" {
     
     extern void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect (void *appKey, void * appSecret);
     
-    extern void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer);
+    extern void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer);
     
     extern void __iosCommitVerificationCode (void *phoneNumber, void *zone, void *verificationCode,void *observer);
     
@@ -51,17 +51,19 @@ extern "C" {
         NSLog(@"3.0.0 以后版本的无需注册 appkey和appSecret，已配置到info.plist内");
     }
     
-    void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer)
+    void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer)
     {
         NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
         
         NSString *zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
         
+        NSString *tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+        
         NSString *observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
         
         if (phoneNumber && zone)
         {
-            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr result:^(NSError *error) {
+            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr template:tempCodeStr result:^(NSError *error) {
                 
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                 [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"action"];
@@ -285,7 +287,7 @@ extern "C" {
             NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
             [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
             
-            NSString *versionString = [SMSSDK version];
+            NSString *versionString = [SMSSDK sdkVersion];
             [resultDic setObject:versionString forKey:@"res"];
             NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
             UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);

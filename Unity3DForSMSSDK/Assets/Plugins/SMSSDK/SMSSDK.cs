@@ -116,11 +116,11 @@ namespace cn.SMSSDK.Unity
 		/// <param name="getCodeMethodType">Get code method type.</param>
 		/// <param name="phoneNumber">Phone number.</param>
 		/// <param name="zone">Zone.</param>
-		public void getCode (CodeType getCodeMethodType, string phoneNumber, string zone)
+		public void getCode (CodeType getCodeMethodType, string phoneNumber, string zone, string tempCode)
 		{
 			if (smssdkImpl != null) 
 			{
-				smssdkImpl.getCode (getCodeMethodType, phoneNumber, zone);
+				smssdkImpl.getCode (getCodeMethodType, phoneNumber, zone, tempCode);
 			}
 		}
 
