@@ -14,7 +14,7 @@ namespace cn.SMSSDK.Unity
 		[DllImport("__Internal")]
 		private static extern void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect (string appKey, string appSerect);
 		[DllImport("__Internal")]
-		private static extern void __iosGetVerificationCode (CodeType getCodeMethod, string phoneNumber, string WindZone, string observer);
+		private static extern void __iosGetVerificationCode (CodeType getCodeMethod, string phoneNumber, string WindZone, string tempCode, string observer);
 		[DllImport("__Internal")]
 		private static extern void __iosCommitVerificationCode (string phoneNumber, string zone, string verificationCode,string observer);
 		[DllImport("__Internal")]
@@ -48,7 +48,7 @@ namespace cn.SMSSDK.Unity
 		/// <param name="isWarn">If set to <c>true</c> is warn.</param>
 		public override void init (string appKey, string appSerect, bool isWarn)
 		{
-			__iosSMSSDKRegisterAppWithAppKeyAndAppSerect (appKey ,appSerect);
+			__iosSMSSDKRegisterAppWithAppKeyAndAppSerect (appKey, appSerect);
 		}
 
 
@@ -58,9 +58,9 @@ namespace cn.SMSSDK.Unity
 		/// <param name="getCodeMethod">Get code method.</param>
 		/// <param name="phoneNumber">Phone number.</param>
 		/// <param name="zone">Zone.</param>
-		public override void getCode (CodeType getCodeMethod, string phoneNumber, string zone)
+		public override void getCode (CodeType getCodeMethod, string phoneNumber, string zone, string tempCode)
 		{
-			__iosGetVerificationCode (getCodeMethod, phoneNumber,zone,_callbackObjectName);
+			__iosGetVerificationCode (getCodeMethod, phoneNumber, zone, tempCode, _callbackObjectName);
 		}
 
 

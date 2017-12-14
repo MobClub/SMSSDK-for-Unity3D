@@ -18,7 +18,7 @@ extern "C" {
     
     extern void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect (void *appKey, void * appSecret);
     
-    extern void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer);
+    extern void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer);
     
     extern void __iosCommitVerificationCode (void *phoneNumber, void *zone, void *verificationCode,void *observer);
     
@@ -48,20 +48,22 @@ extern "C" {
     
     void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect(void *appKey, void * appSecret)
     {
-        NSLog(@"3.0.0 版本SMSSDK 的 appkey和appSecret 请配置到info.plist内");
+        NSLog(@"3.0.0 以后版本的无需注册 appkey和appSecret，已配置到info.plist内");
     }
     
-    void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone,void *observer)
+    void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer)
     {
         NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
         
         NSString *zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
         
+        NSString *tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+        
         NSString *observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
         
         if (phoneNumber && zone)
         {
-            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr result:^(NSError *error) {
+            [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr template:tempCodeStr result:^(NSError *error) {
                 
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
                 [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"action"];
@@ -74,11 +76,11 @@ extern "C" {
                     //转化回到JSONString的状
                     if (smsGetCodeMethod == SMSGetCodeMethodSMS)
                     {
-                        NSLog(@"获取文本验证码成功后返回数据_%s",[resultMsg UTF8String]);
+                        NSLog(@"getTextCode Success_%s",[resultMsg UTF8String]);
                     }
                     else
                     {
-                        NSLog(@"获取语音验证码成功后返回数据_%s",[resultMsg UTF8String]);
+                        NSLog(@"getVoiceCode Success_%s",[resultMsg UTF8String]);
                     }
                     
                     NSString *resultStr = [MOBFJson jsonStringFromObject:resultDic];
@@ -126,7 +128,7 @@ extern "C" {
                 
                 if (!error)
                 {
-                    NSString *resultMsg = @"commitVerificationCode";
+                    NSString *resultMsg = @"commitVerifyCode Success";
                     [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
                     [resultDic setObject:resultMsg forKey:@"res"];
                     NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
@@ -202,7 +204,7 @@ extern "C" {
                 {
                     NSString *friendsString = [MOBFJson jsonStringFromObject:friendsArray];
                     [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                    [resultDic setObject:friendsString forKey:@"res"];
+                    [resultDic setObject:friendsString?friendsString:@"No friends was found" forKey:@"res"];
                     NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
                     UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
                     
@@ -285,7 +287,7 @@ extern "C" {
             NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
             [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
             
-            NSString *versionString = [SMSSDK version];
+            NSString *versionString = [SMSSDK sdkVersion];
             [resultDic setObject:versionString forKey:@"res"];
             NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
             UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
@@ -306,81 +308,38 @@ extern "C" {
     {
         if (observer)
         {
-            NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
+            UIViewController *rootVC =[(id)[UIApplication sharedApplication].delegate rootViewController];
             
-            [SMSSDKUI showVerificationCodeViewWithMethod:smsGetCodeMethod result:^(enum SMSUIResponseState state, NSString *phoneNumber, NSString *zone, NSError *error) {
-                NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
-                
-                if (!error)
-                {
-                    if (state == SMSUIResponseStateSuccess)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                        NSString *resString = @"commitCodeSuccess";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                    }
-                    else if (state == SMSUIResponseStateCancel)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:7] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                        NSString *resString = @"showRegisterViewSuccess";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                        
-                    }
-                    else if (state == SMSUIResponseStateFail)
-                    {
-                        [resultDic setObject:[NSNumber numberWithInt:7] forKey:@"action"];
-                        [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"status"];
-                        NSString *resString = @"showRegisterViewFailer";
-                        [resultDic setObject:resString forKey:@"res"];
-                        NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                        UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                    }
-                }
-                else
-                {
-                    
-                    NSMutableDictionary * resultErrorMsg =[NSMutableDictionary dictionaryWithObjectsAndKeys:@(error.code),@"code" ,error.domain,@"domain",error.userInfo,@"userInfo",  nil];
-                    NSString *resultString = [MOBFJson jsonStringFromObject:resultErrorMsg];
-                    [resultDic setObject:[NSNumber numberWithInt:2] forKey:@"status"];
-                    [resultDic setObject:resultString forKey:@"res"];
-                    //转化回到JSONString的状态码
-                    NSString *resultStr = [MOBFJson jsonStringFromObject:resultDic];
-                    UnitySendMessage([observerStr UTF8String], "_callBack", [resultStr UTF8String]);
-                    
-                }
-                
-            }];
+            SMSSDKUIGetCodeViewController *vc = [[SMSSDKUIGetCodeViewController alloc] initWithMethod:SMSGetCodeMethodSMS];
             
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            
+            [rootVC presentViewController:nav animated:YES completion:nil];
         }
-        
     }
     
     void __showContractFriendsView (void *observer)
     {
         if (observer)
         {
-            NSString *observerStr = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
-            
-            [SMSSDKUI showGetContactsFriendsViewWithNewFriends:[NSMutableArray array] newFriendClock:^(enum SMSResponseState state, int latelyFriendsCount) {
+            [SMSSDK getAllContactFriends:^(NSError *error, NSArray *friendsArray) {
                 
-            } result:^{
-                
-                NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];
-                [resultDic setObject:[NSNumber numberWithInt:8] forKey:@"action"];
-                [resultDic setObject:[NSNumber numberWithInt:1] forKey:@"status"];
-                
-                NSString *resString = @"showContractFriendsViewSuccess";
-                [resultDic setObject:resString forKey:@"res"];
-                NSString *resultString = [MOBFJson jsonStringFromObject:resultDic];
-                
-                UnitySendMessage([observerStr UTF8String], "_callBack", [resultString UTF8String]);
-                
+                if (error)
+                {
+                    NSLog(@"%s,%@",__func__,error);
+                }
+                else
+                {
+                    NSLog(@"%@",friendsArray);
+                    
+                    SMSSDKUIContactFriendsViewController *vc = [[SMSSDKUIContactFriendsViewController alloc] initWithContactFriends:friendsArray];
+                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                    
+                    UIViewController *rootVC =[(id)[UIApplication sharedApplication].delegate rootViewController];
+                    
+                    [rootVC presentViewController:nav animated:YES completion:nil];
+                    
+                }
             }];
             
         }

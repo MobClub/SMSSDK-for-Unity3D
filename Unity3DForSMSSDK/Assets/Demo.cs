@@ -18,6 +18,7 @@ namespace cn.SMSSDK.Unity
 		private string tempCode= "1319972";
 		private string code = "";
 		private string result = null;
+		private string tempCode= "1319972";
 
 
 		void Start () 
@@ -52,90 +53,104 @@ namespace cn.SMSSDK.Unity
 					scale = Screen.height / 320;
 				}
 			}
-			Debug.Log("scale  ===>>>  " + scale);
-
+				
 			float btnWidth = 200 * scale;
-			float btnHeight = 35 * scale;
-			float btnTop = 20 * scale;
-			GUI.skin.button.fontSize = Convert.ToInt32(16 * scale);
+			float btnHeight = 30 * scale;
+			float btnTop = 50 * scale;
+			GUI.skin.button.fontSize = Convert.ToInt32(14 * scale);
+			GUI.skin.label.fontSize = Convert.ToInt32 (14 * scale);
+			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+			GUI.skin.textField.fontSize = Convert.ToInt32 (14 * scale);
+			GUI.skin.textField.alignment = TextAnchor.MiddleCenter;
+
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "手机号");
+
+			phone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), phone);
+
+			btnTop += btnHeight + 10 * scale;
+
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "区号");
+
+			zone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), zone);
+
+			btnTop += btnHeight + 10 * scale;
+
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "验证码");
+
+			code = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), code);
+
+			btnTop += btnHeight + 10 * scale;
 
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeSMS"))
 			{
-				smssdk.getCode (CodeType.TextCode, phone, "86", tempCode);
+				smssdk.getCode (CodeType.TextCode, phone, zone, tempCode);
 			}
 
-
-			btnTop += btnHeight + 20 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
-			{
-
-				smssdk.getCode (CodeType.VoiceCode, phone, "86", tempCode);
-			}
-
-			//添加textField  输入验证码
-			btnTop += btnHeight + 20 * scale;
-			code = GUI.TextField(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), code);
-
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "CommitCode"))
 			{
-				smssdk.commitCode (phone, "86",code);
+				smssdk.commitCode (phone, zone, code);
 			}
 
-
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
+			{
+				smssdk.getCode (CodeType.VoiceCode, phone, zone, tempCode);
+			}
+				
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCountryCode"))
 			{
 				smssdk.getSupportedCountryCode ();
 			}
 
 
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetFriends"))
 			{
 
 				smssdk.getFriends ();
 			}
 
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "SubmitUserInfo"))
 			{
 				userInfo.avatar = "www.mob.com";
 				userInfo.phoneNumber = phone;
 				userInfo.zone = zone;
 				userInfo.nickName = "David";
-				userInfo.uid = "18616261983";
+				userInfo.uid = "1234567890";
 				smssdk.submitUserInfo (userInfo);
 			}
 
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetVersionNumber"))
 			{
 
 				smssdk.getVersion ();
 			}
 
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "EnableWarn"))
 			{
 				smssdk.enableWarn (true);
 			}
 
 			//展示register UI界面
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "showRegisterUIView"))
 			{
 				smssdk.showRegisterPage (CodeType.TextCode);
 			}
 
 			//展示contractFriends UI界面
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "showContractsUIView"))
 			{
 				smssdk.showContactsPage ();
 			}
 			//展示回调结果
-			btnTop += btnHeight + 20 * scale;
+			btnTop += btnHeight + 10 * scale;
 			GUIStyle style=new GUIStyle();
 			style.normal.textColor=new Color(1,0,0);   //字体颜色
 			// style.fontSize = 30;
