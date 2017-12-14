@@ -1,11 +1,11 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3DForSMSSDK", "Assembly-CSharp-firstpass.csproj", "{B49C4258-116C-B235-1DCD-242D7B8FD793}"
+# Visual Studio 2008
+
+Project("{C99F471B-59C5-CAA6-E5EE-1DBBD87078A9}") = "Unity3DForSMSSDK", "Assembly-CSharp-firstpass.csproj", "{B49C4258-116C-B235-1DCD-242D7B8FD793}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3DForSMSSDK", "Assembly-CSharp.csproj", "{E4EBB8EC-A528-631B-402A-7D080018A1F5}"
+Project("{C99F471B-59C5-CAA6-E5EE-1DBBD87078A9}") = "Unity3DForSMSSDK", "Assembly-CSharp.csproj", "{E4EBB8EC-A528-631B-402A-7D080018A1F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity3DForSMSSDK", "Assembly-CSharp-Editor.csproj", "{E6EB81EF-DA9A-BC63-13A2-0E154FAC465C}"
+Project("{C99F471B-59C5-CAA6-E5EE-1DBBD87078A9}") = "Unity3DForSMSSDK", "Assembly-CSharp-Editor.csproj", "{E6EB81EF-DA9A-BC63-13A2-0E154FAC465C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

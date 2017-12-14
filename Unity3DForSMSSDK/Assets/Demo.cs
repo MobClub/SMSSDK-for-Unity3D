@@ -15,6 +15,7 @@ namespace cn.SMSSDK.Unity
 		//please add your phone number
 		private string phone = "";
 		private string zone = "86";
+		private string tempCode= "1319972";
 		private string code = "";
 		private string result = null;
 
@@ -42,11 +43,16 @@ namespace cn.SMSSDK.Unity
 			GUI.skin = demoSkin;
 
 			float scale = 1.0f;
-			if (Application.platform == RuntimePlatform.IPhonePlayer)
-			{
+			if (Application.platform == RuntimePlatform.IPhonePlayer) {
 				scale = Screen.width / 320;
+			} else if (Application.platform == RuntimePlatform.Android) {
+				if (Screen.orientation == ScreenOrientation.Portrait) {
+					scale = Screen.width / 320;
+				} else {
+					scale = Screen.height / 320;
+				}
 			}
-
+			Debug.Log("scale  ===>>>  " + scale);
 
 			float btnWidth = 200 * scale;
 			float btnHeight = 35 * scale;
@@ -55,7 +61,7 @@ namespace cn.SMSSDK.Unity
 
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeSMS"))
 			{
-				smssdk.getCode (CodeType.TextCode, phone, "86");
+				smssdk.getCode (CodeType.TextCode, phone, "86", tempCode);
 			}
 
 
@@ -63,7 +69,7 @@ namespace cn.SMSSDK.Unity
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
 			{
 
-				smssdk.getCode (CodeType.VoiceCode, phone, "86");
+				smssdk.getCode (CodeType.VoiceCode, phone, "86", tempCode);
 			}
 
 			//添加textField  输入验证码
@@ -130,7 +136,11 @@ namespace cn.SMSSDK.Unity
 			}
 			//展示回调结果
 			btnTop += btnHeight + 20 * scale;
-			GUI.Label(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), result);
+			GUIStyle style=new GUIStyle();
+			style.normal.textColor=new Color(1,0,0);   //字体颜色
+			// style.fontSize = 30;
+			style.fontSize = (int)(20 * scale);       //字体大小
+			GUI.Label(new Rect(20, btnTop, Screen.width - 20 - 20, Screen.height - btnTop), result, style);
 		}
 
 		public void onComplete(int action, object resp)

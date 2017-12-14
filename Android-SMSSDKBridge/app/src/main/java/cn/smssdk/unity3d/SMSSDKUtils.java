@@ -68,7 +68,7 @@ public class SMSSDKUtils implements Callback {
 
     }
 
-    public void getTextCode(String zone, String phone) {
+    public void getTextCode(String zone, String phone, String tempCode) {
         if (DEBUG) {
             System.out.println("SMSSDKUtils.getTextCode");
         }
@@ -78,6 +78,7 @@ public class SMSSDKUtils implements Callback {
         Bundle data = new Bundle();
         data.putString("zone",zone);
         data.putString("phone",phone);
+		data.putString("tempCode", tempCode);
         msg.setData(data);
         UIHandler.sendMessage(msg, this);
     }
@@ -197,7 +198,8 @@ public class SMSSDKUtils implements Callback {
             case MSG_TEXT_CODE:{
                 String zone = msg.getData().getString("zone");
                 String phone  = msg.getData().getString("phone");
-                SMSSDK.getVerificationCode(zone,phone);
+				String tempCode = msg.getData().getString("tempCode");
+				SMSSDK.getVerificationCode(zone, phone, tempCode, null);
             }
             break;
             case MSG_VOICE_CODE:{

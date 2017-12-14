@@ -27,12 +27,12 @@ namespace cn.SMSSDK.Unity
 	}
 	}
 
-	public override void getCode(CodeType type, string phoneNumber, string zone)
+		public override void getCode(CodeType type, string phoneNumber, string zone, string tempCode)
 	{
-			Debug.Log("[SMSSDK]AndroidImpl ==>>> getCode " + zone + ";" + phoneNumber);
+			Debug.Log("[SMSSDK]AndroidImpl ==>>> getCode " + zone + ";" + phoneNumber + ";" + tempCode);
 	if(smssdk != null) {
 	if(type == CodeType.TextCode) {
-	smssdk.Call("getTextCode", zone, phoneNumber);
+	smssdk.Call("getTextCode", zone, phoneNumber, tempCode);
 	} else if(type == CodeType.VoiceCode) {
 	smssdk.Call("getVoiceCode", zone, phoneNumber);
 	}
