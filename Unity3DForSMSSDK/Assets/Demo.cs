@@ -18,7 +18,6 @@ namespace cn.SMSSDK.Unity
 		private string tempCode= "1319972";
 		private string code = "";
 		private string result = null;
-		private string tempCode= "1319972";
 
 
 		void Start () 
@@ -63,21 +62,22 @@ namespace cn.SMSSDK.Unity
 			GUI.skin.textField.fontSize = Convert.ToInt32 (14 * scale);
 			GUI.skin.textField.alignment = TextAnchor.MiddleCenter;
 
-			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "手机号");
+			float labelWidth = 60 * scale;
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, labelWidth, btnHeight), "手机号");
 
-			phone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), phone);
-
-			btnTop += btnHeight + 10 * scale;
-
-			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "区号");
-
-			zone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), zone);
+			phone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + labelWidth, btnTop, btnWidth - labelWidth, btnHeight), phone);
 
 			btnTop += btnHeight + 10 * scale;
 
-			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, 100, btnHeight), "验证码");
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, labelWidth, btnHeight), "区号");
 
-			code = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + 100, btnTop, btnWidth - 100, btnHeight), code);
+			zone = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + labelWidth, btnTop, btnWidth - labelWidth, btnHeight), zone);
+
+			btnTop += btnHeight + 10 * scale;
+
+			GUI.Label (new Rect ((Screen.width - btnWidth) / 2, btnTop+5, labelWidth, btnHeight), "验证码");
+
+			code = GUI.TextField(new Rect((Screen.width - btnWidth) / 2 + labelWidth, btnTop, btnWidth - labelWidth, btnHeight), code);
 
 			btnTop += btnHeight + 10 * scale;
 
