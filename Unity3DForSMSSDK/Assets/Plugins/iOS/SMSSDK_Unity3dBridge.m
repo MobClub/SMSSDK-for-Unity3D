@@ -53,13 +53,30 @@ extern "C" {
     
     void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer)
     {
-        NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
+        NSString *phoneNumberStr = nil;
+        NSString *zoneStr = nil;
+        NSString *tempCodeStr = nil;
+        NSString *observerStr = nil;
         
-        NSString *zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
+        if (phoneNumber != NULL)
+        {
+            phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
+        }
         
-        NSString *tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+        if (zone != NULL)
+        {
+            zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
+        }
         
-        NSString *observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
+        if (tempCode != NULL)
+        {
+            tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+        }
+        
+        if (observer != NULL)
+        {
+            observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
+        }
         
         if (phoneNumber && zone)
         {
