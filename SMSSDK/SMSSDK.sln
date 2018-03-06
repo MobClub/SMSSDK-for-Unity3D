@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSSDK", "Assembly-CSharp-firstpass.csproj", "{D320FEA3-38C7-96BB-72E8-F44CC9706D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSSDK", "Assembly-CSharp-Editor-firstpass.csproj", "{D7F6D223-B8BA-E9E9-2D53-11FE4FBC85A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSSDK", "Assembly-CSharp.csproj", "{A1AA0F36-7BD2-8AFC-9C3E-CA6E11B30CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D320FEA3-38C7-96BB-72E8-F44CC9706D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D320FEA3-38C7-96BB-72E8-F44CC9706D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D320FEA3-38C7-96BB-72E8-F44CC9706D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D320FEA3-38C7-96BB-72E8-F44CC9706D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F6D223-B8BA-E9E9-2D53-11FE4FBC85A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F6D223-B8BA-E9E9-2D53-11FE4FBC85A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F6D223-B8BA-E9E9-2D53-11FE4FBC85A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F6D223-B8BA-E9E9-2D53-11FE4FBC85A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AA0F36-7BD2-8AFC-9C3E-CA6E11B30CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AA0F36-7BD2-8AFC-9C3E-CA6E11B30CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AA0F36-7BD2-8AFC-9C3E-CA6E11B30CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AA0F36-7BD2-8AFC-9C3E-CA6E11B30CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
