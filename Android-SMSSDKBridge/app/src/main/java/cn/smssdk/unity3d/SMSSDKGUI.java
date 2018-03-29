@@ -13,6 +13,7 @@ import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.gui.ContactsPage;
 import cn.smssdk.gui.RegisterPage;
+import cn.smssdk.utils.SMSLog;
 
 public class SMSSDKGUI {
     private static boolean DEBUG = true;
@@ -54,7 +55,8 @@ public class SMSSDKGUI {
     //#elif def{lang} == en
     // open the page of sign up
     //#endif
-    public void showRegisterPage() {
+    public void showRegisterPage(String tempCode) {
+		SMSLog.getInstance().d("=======>showRegisterPage. tempCode= " + tempCode);
         RegisterPage registerPage = new RegisterPage();
         EventHandler handler = new EventHandler(){
             public void afterEvent(int event, int result, Object data) {
@@ -62,7 +64,7 @@ public class SMSSDKGUI {
                 UnityPlayer.UnitySendMessage(u3dGameObject, u3dCallback, resp);
             }
         };
-
+		registerPage.setTempCode(tempCode);
         registerPage.setRegisterCallback(handler);
         registerPage.show(context);
     }

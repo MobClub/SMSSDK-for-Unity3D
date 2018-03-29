@@ -41,11 +41,12 @@ namespace cn.SMSSDK.Unity
 	}
 	}
 
-	public override void showRegisterPage(CodeType getCodeMethodType)
+	public override void showRegisterPage(CodeType getCodeMethodType, string tempCode)
 	{
+			Debug.Log("[SMSSDK]AndroidGUIImpl ==>>> showRegisterPage. tempCode=" + tempCode);
 	if (smssdkgui != null)
 	{
-	smssdkgui.Call("showRegisterPage");
+	smssdkgui.Call("showRegisterPage", tempCode);
 	}
 	}
 	}

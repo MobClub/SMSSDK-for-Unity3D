@@ -200,11 +200,11 @@ namespace cn.SMSSDK.Unity
 		/// <summary>
 		/// Shows the register page.
 		/// </summary>
-		public void showRegisterPage(CodeType getCodeMethodType)
+		public void showRegisterPage(CodeType getCodeMethodType, string tempCode)
 		{
 			if (smsSDKGUIImpl != null)
 			{
-				smsSDKGUIImpl.showRegisterPage (getCodeMethodType);
+				smsSDKGUIImpl.showRegisterPage (getCodeMethodType, tempCode);
 			}
 		}
 

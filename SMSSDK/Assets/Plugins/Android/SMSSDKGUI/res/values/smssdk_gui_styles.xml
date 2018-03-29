@@ -1,0 +1,40 @@
+<resources>
+    <style name="AppTheme" parent="android:Theme.Light">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+	<style name="MobShellTheme" parent="android:Theme.Light.NoTitleBar">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>
+
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+	</style>
+
+	<style name="aaaa" parent="android:Theme.Translucent.NoTitleBar" >
+	</style>
+
+    <!-- dialog -->
+    <style name="CommonDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/smssdk_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+	<!-- popup dialog -->
+	<style name="Dialog_Common" parent="@android:style/Theme.Dialog">
+		<!-- 边框 -->
+		<item name="android:windowFrame">@null</item>
+		<!-- 是否浮现在activity之上 -->
+		<item name="android:windowIsFloating">true</item>
+		<!-- 半透明 -->
+		<item name="android:windowIsTranslucent">false</item>
+		<!-- 无标题 -->
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<!-- 自己想要的背景 -->
+		<item name="android:background">@android:color/transparent</item>
+		<!-- 模糊 -->
+		<item name="android:backgroundDimEnabled">true</item>
+	</style>
+</resources>

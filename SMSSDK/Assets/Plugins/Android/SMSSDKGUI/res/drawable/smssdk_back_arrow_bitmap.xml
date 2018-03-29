@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<scale xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:drawable="@drawable/smssdk_back_arrow"-->
+    <!--android:scaleWidth="40dp"-->
+    <!--android:scaleHeight="40dp"-->
+    <!--android:scaleGravity="center"/>-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/smssdk_back_arrow"
+        android:width="26.5dp"
+        android:height="26.5dp" />
+</layer-list>
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--&gt;-->
+    <!--<size android:width="" />-->
+    <!--<-->
+<!--</shape>-->
+
+<!--<bitmap xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:src="@drawable/smssdk_back_arrow"-->
+    <!--android:-->
+    <!--/>-->
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--<item android:state_pressed="true" android:drawable="@drawable/smssdk_corners_bg_pre"/>-->
+    <!--<item android:drawable="@drawable/smssdk_corners_bg_nor"/>-->
+<!--</selector>-->

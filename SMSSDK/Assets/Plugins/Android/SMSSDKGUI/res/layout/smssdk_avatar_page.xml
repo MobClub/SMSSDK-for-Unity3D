@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/smssdk_titlebar_height"
+        layout="@layout/smssdk_titlebar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="请填写您的资料"
+        android:textColor="#2A2B30"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp">
+
+        <com.mob.tools.gui.AsyncImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@null"
+            android:src="@drawable/smssdk_cp_default_avatar"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:text="点击选择头像"
+            android:textSize="14sp"
+            android:textColor="#C7C7C7"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="56dp">
+
+        <TextView
+            android:id="@+id/tv_temp1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/et_nickname"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="昵称"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/tv_temp1"
+            android:background="@null"
+            android:gravity="left|center_vertical"
+            android:hint="请填写您的昵称"
+            android:paddingLeft="62dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:textColorHint="#C7C7C7"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_below="@id/et_nickname"
+            android:background="#E0E0E6" />
+    </RelativeLayout>
+
+
+    <Button
+		android:id="@+id/bt_submit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/smssdk_btn_enable"
+        android:gravity="center"
+        android:text="提交资料"
+        android:textSize="18sp"
+        android:textColor="@android:color/white" />
+</LinearLayout>
