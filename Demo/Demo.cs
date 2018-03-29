@@ -140,7 +140,8 @@ namespace cn.SMSSDK.Unity
 			btnTop += btnHeight + 10 * scale;
 			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "showRegisterUIView"))
 			{
-				smssdk.showRegisterPage (CodeType.TextCode);
+				// 模板号可以为空
+				smssdk.showRegisterPage (CodeType.TextCode, tempCode);
 			}
 
 			//展示contractFriends UI界面
