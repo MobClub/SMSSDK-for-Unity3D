@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMSSDKUIBaseViewController.h"
 
-@interface SMSSDKUIContactFriendsViewController : UIViewController
+@interface SMSSDKUIContactFriendsViewController : SMSSDKUIBaseViewController
 
 - (instancetype)initWithContactFriends:(NSArray *)contactFriends;
 

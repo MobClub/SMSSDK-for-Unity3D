@@ -34,7 +34,7 @@ extern "C" {
     
     
     //Demo UI
-    extern void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer);
+    extern void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *tempCode ,void *observer);
     
     extern void __showContractFriendsView (void *observer);
     
@@ -304,13 +304,15 @@ extern "C" {
     
     //SMSSDK_Demo UI
     
-    void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod, void *observer)
+    void __showRegisterView (SMSGetCodeMethod smsGetCodeMethod,  void *tempCode, void *observer)
     {
         if (observer)
         {
             UIViewController *rootVC =[(id)[UIApplication sharedApplication].delegate rootViewController];
             
-            SMSSDKUIGetCodeViewController *vc = [[SMSSDKUIGetCodeViewController alloc] initWithMethod:SMSGetCodeMethodSMS];
+            
+            NSString *tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+            SMSSDKUIGetCodeViewController *vc = [[SMSSDKUIGetCodeViewController alloc] initWithMethod:SMSGetCodeMethodSMS template:tempCodeStr];
             
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
             

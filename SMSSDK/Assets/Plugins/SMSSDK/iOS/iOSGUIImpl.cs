@@ -12,7 +12,7 @@ namespace cn.SMSSDK.Unity
 		[DllImport("__Internal")]
 		 static extern void __iosSMSSDKRegisterAppWithAppKeyAndAppSerect (string appKey, string appSerect);
 		[DllImport("__Internal")]
-		static extern void __showRegisterView (CodeType getCodeMethod,string observer);
+		static extern void __showRegisterView (CodeType getCodeMethod,string tempCode,string observer);
 		[DllImport("__Internal")]
 		static extern void __showContractFriendsView (string observer);
 
@@ -44,9 +44,9 @@ namespace cn.SMSSDK.Unity
 		/// <summary>
 		/// Shows the register view.
 		/// </summary>
-		public override void showRegisterPage(CodeType getCodeMethodType)
+		public override void showRegisterPage(CodeType getCodeMethodType,string tempCode)
 		{
-			__showRegisterView (getCodeMethodType, _callbackObjectName);
+			__showRegisterView (getCodeMethodType,tempCode, _callbackObjectName);
 		}
 
 		/// <summary>
