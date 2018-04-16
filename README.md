@@ -1,11 +1,17 @@
 # SMSSDK-for-Unity3D
-### This is a sample of SMSSDK for Unity3D.
+### This is UnityPackage base on SMSSDK([iOS](https://github.com/MobClub/SMSSDK-for-iOS),[Android](https://github.com/MobClub/SMSSDK-for-Android)).It supports an unity plugin to use SMSSDK. [中文官网](http://sms.mob.com/).
 **supported original SMSSDK version:**
 
 - Android - V3.1.1
-- iOS - V3.1.0
+- iOS - V3.1.2
 
-----------------------------------------------------
+**中文集成文档**
+
+- [Android](http://wiki.mob.com/smssdk-android-for-unity3d/)
+- [iOS](http://wiki.mob.com/smssdk-ios-for-unity3d/
+)
+
+- - - - -
 
 ## The notes for fast integration of Unity3D##
 
@@ -73,3 +79,5 @@ Until now,the Unity party is everything ok,the next you need to import the SMSSD
 > * or Skype:amber
 
 More information About SMSSDK, please visit our website [Mob.com](http://www.mob.com
+
+
