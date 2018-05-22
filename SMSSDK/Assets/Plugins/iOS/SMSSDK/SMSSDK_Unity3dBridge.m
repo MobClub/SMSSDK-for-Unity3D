@@ -55,7 +55,7 @@ extern "C" {
     {
 
         
-        if (phoneNumber && zone && observerStr)
+        if (phoneNumber && zone && observer)
         {
             
             NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
