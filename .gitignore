@@ -1,6 +1,7 @@
 
 SMSSDK/Temp
 SMSSDK/Library
+*/.DS_Store
 
 *.meta
 Android-SMSSDKBridge/.idea/modules.xml
