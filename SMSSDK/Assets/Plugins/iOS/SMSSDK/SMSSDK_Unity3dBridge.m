@@ -53,16 +53,22 @@ extern "C" {
     
     void __iosGetVerificationCode (SMSGetCodeMethod smsGetCodeMethod, void *phoneNumber, void *zone, void *tempCode, void *observer)
     {
-        NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
+
         
-        NSString *zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
-        
-        NSString *tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
-        
-        NSString *observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
-        
-        if (phoneNumber && zone)
+        if (phoneNumber && zone && observerStr)
         {
+            
+            NSString  *phoneNumberStr = [NSString stringWithCString:phoneNumber encoding:NSUTF8StringEncoding];
+            
+            NSString *zoneStr = [NSString stringWithCString:zone encoding:NSUTF8StringEncoding];
+            
+            NSString *tempCodeStr = nil;
+            if(tempCode)
+                tempCodeStr = [NSString stringWithCString:tempCode encoding:NSUTF8StringEncoding];
+            
+            NSString *observerStr  = [NSString stringWithCString:observer encoding:NSUTF8StringEncoding];
+            
+            
             [SMSSDK getVerificationCodeByMethod:smsGetCodeMethod phoneNumber:phoneNumberStr zone:zoneStr template:tempCodeStr result:^(NSError *error) {
                 
                 NSMutableDictionary *resultDic = [NSMutableDictionary dictionaryWithCapacity:0];

@@ -29,13 +29,5 @@
 - (instancetype)initWithMethod:(SMSGetCodeMethod)methodType template:(NSString *)tempCode;
 
 
-/**
- 初始化获取验证码视图控制器
- 
- *  @param methodType 获取验证码方法
- *  @param codeBusiness 业务逻辑类型
- */
-- (instancetype)initWithMethod:(SMSGetCodeMethod)methodType codeBusiness:(SMSCheckCodeBusiness)codeBusiness;
-
 @end
 

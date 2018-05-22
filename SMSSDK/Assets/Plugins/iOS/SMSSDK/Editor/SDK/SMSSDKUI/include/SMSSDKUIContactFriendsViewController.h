@@ -11,6 +11,20 @@
 
 @interface SMSSDKUIContactFriendsViewController : SMSSDKUIBaseViewController
 
+/**
+ 初始化联系人列表视图控制器
+ 
+ *  @param contactFriends 联系人
+ */
 - (instancetype)initWithContactFriends:(NSArray *)contactFriends;
+
+
+/**
+ 初始化联系人列表视图控制器
+ 
+ *  @param contactFriends 联系人
+ *  @param tempCode           短信模板id
+ */
+- (instancetype)initWithContactFriends:(NSArray *)contactFriends template:(NSString *)tempCode;
 
 @end
