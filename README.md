@@ -2,7 +2,7 @@
 ### This is a sample of SMSSDK for Unity3D.
 **supported original SMSSDK version:**
 
-- Android - V3.2.0
+- Android - V3.2.1
 - iOS - V3.1.0
 
 ----------------------------------------------------
