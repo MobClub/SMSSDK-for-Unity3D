@@ -7,7 +7,8 @@ using System.Runtime.InteropServices;
 
 namespace cn.SMSSDK.Unity
 {
-	#if UNITY_IPHONE
+	#if UNITY_IPHONE || UNITY_IOS
+
 	public class iOSImpl : SMSSDKInterface 
 	{
 		// Use this for initialization
@@ -48,7 +49,11 @@ namespace cn.SMSSDK.Unity
 		/// <param name="isWarn">If set to <c>true</c> is warn.</param>
 		public override void init (string appKey, string appSerect, bool isWarn)
 		{
-			__iosSMSSDKRegisterAppWithAppKeyAndAppSerect (appKey, appSerect);
+			if(Application.platform == RuntimePlatform.IPhonePlayer)
+			{
+				__iosSMSSDKRegisterAppWithAppKeyAndAppSerect (appKey, appSerect);
+			
+			}
 		}
 
 
