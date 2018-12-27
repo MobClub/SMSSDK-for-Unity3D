@@ -14,7 +14,7 @@
 	<string name="smssdk_error_desc_418">内部接口调用失败</string>
 	<string name="smssdk_error_desc_419">duid对应的token不存在</string>
 	<string name="smssdk_error_desc_420">duid不存在</string>
-	
+
 	<string name="smssdk_error_desc_450">权限不足</string>
 	<string name="smssdk_error_desc_451">User-Agent为空</string>
 	<string name="smssdk_error_desc_452">User-Agent格式错误</string>
@@ -47,7 +47,12 @@
 	<string name="smssdk_error_desc_481">验证接口调用错误</string>
 	<string name="smssdk_error_desc_482">传输中数据丢失</string>
 	<string name="smssdk_error_desc_483">AppSecret错误</string>
-	
+	<string name="smssdk_error_desc_484">模板号不存在</string>
+	<string name="smssdk_error_desc_485">短信模板未通过审核</string>
+	<string name="smssdk_error_desc_486">非验证码短信模板</string>
+	<string name="smssdk_error_desc_487">短信内容超过60位</string>
+	<string name="smssdk_error_desc_489">当前MD5码未配置</string>
+
 	<string name="smssdk_error_desc_500">服务器内部错误</string>
 	<string name="smssdk_error_desc_501">501 Not Implemented</string>
 	<string name="smssdk_error_desc_502">502 Bad Gateway</string>
@@ -59,7 +64,7 @@
 	<string name="smssdk_error_desc_508">508 Loop Detected (WebDAV; RFC 5842)</string>
 	<string name="smssdk_error_desc_510">510 Not Extended (RFC 2774)</string>
 	<string name="smssdk_error_desc_511">511 Network Authentication Required (RFC 6585)</string>
-	
+
 	<string name="smssdk_error_desc_600">请求太频繁，API使用受限制</string>
 	<string name="smssdk_error_desc_601">开关未打开，短信发送受限</string>
 	<string name="smssdk_error_desc_602">无法发送此地区短信</string>
@@ -72,7 +77,7 @@
 	<string name="smssdk_error_desc_609">Request header错误：Sign为空</string>
 	<string name="smssdk_error_desc_610">Request header错误：UserAgent为空</string>
 	<string name="smssdk_error_desc_611">AppSecret为空</string>
-	
+
 	<string name="smssdk_error_detail_400">客户端请求不能被识别。</string>
 	<string name="smssdk_error_detail_401">请求的token为空。</string>
 	<string name="smssdk_error_detail_402">请求的token不存在。</string>
@@ -119,7 +124,12 @@
 	<string name="smssdk_error_detail_481">验证接口调用错误</string>
 	<string name="smssdk_error_detail_482">在网络传输中content-length不符合</string>
 	<string name="smssdk_error_detail_483">AppSecret错误，数据可能被篡改</string>
-	
+	<string name="smssdk_error_detail_484">模板号不存在，请检查模板号或不要指定模板</string>
+	<string name="smssdk_error_detail_485">当前使用的验证码短信模板未通过审核</string>
+	<string name="smssdk_error_detail_486">指定的模版号不是验证码短信模板</string>
+	<string name="smssdk_error_detail_487">短信内容超过60位</string>
+	<string name="smssdk_error_detail_489">当前MD5码未配置在Mob后台，SMSSDK3.3.0版本后，必须配置Keystore的MD5码</string>
+
 	<string name="smssdk_error_detail_500">服务端程序报错。</string>
 	<string name="smssdk_error_detail_501">501 Not Implemented</string>
 	<string name="smssdk_error_detail_502">502 Bad Gateway</string>
@@ -131,7 +141,7 @@
 	<string name="smssdk_error_detail_508">508 Loop Detected (WebDAV; RFC 5842)</string>
 	<string name="smssdk_error_detail_510">510 Not Extended (RFC 2774)</string>
 	<string name="smssdk_error_detail_511">511 Network Authentication Required (RFC 6585)</string>
-	
+
 	<string name="smssdk_error_detail_600">请求太频繁，API使用受限制</string>
 	<string name="smssdk_error_detail_601">开关未打开，短信发送受限</string>
 	<string name="smssdk_error_detail_602">无法发送此地区短信</string>
@@ -145,5 +155,5 @@
 	<string name="smssdk_error_detail_610">Request header错误：UserAgent为空</string>
 	<string name="smssdk_error_detail_611">AppSecret为空</string>
 
-	
+
 </resources>

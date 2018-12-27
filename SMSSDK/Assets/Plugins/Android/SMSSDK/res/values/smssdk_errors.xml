@@ -47,6 +47,11 @@
 	<string name="smssdk_error_desc_481">验证接口调用错误</string>
 	<string name="smssdk_error_desc_482">传输中数据丢失</string>
 	<string name="smssdk_error_desc_483">AppSecret错误</string>
+	<string name="smssdk_error_desc_484">模板号不存在</string>
+	<string name="smssdk_error_desc_485">短信模板未通过审核</string>
+	<string name="smssdk_error_desc_486">非验证码短信模板</string>
+	<string name="smssdk_error_desc_487">短信内容超过60位</string>
+	<string name="smssdk_error_desc_489">当前MD5码未配置</string>
 	
 	<string name="smssdk_error_desc_500">服务器内部错误</string>
 	<string name="smssdk_error_desc_501">501 Not Implemented</string>
@@ -119,6 +124,11 @@
 	<string name="smssdk_error_detail_481">验证接口调用错误</string>
 	<string name="smssdk_error_detail_482">在网络传输中content-length不符合</string>
 	<string name="smssdk_error_detail_483">AppSecret错误，数据可能被篡改</string>
+	<string name="smssdk_error_detail_484">模板号不存在，请检查模板号或不要指定模板</string>
+	<string name="smssdk_error_detail_485">当前使用的验证码短信模板未通过审核</string>
+	<string name="smssdk_error_detail_486">指定的模版号不是验证码短信模板</string>
+	<string name="smssdk_error_detail_487">短信内容超过60位</string>
+	<string name="smssdk_error_detail_489">当前MD5码未配置在Mob后台，SMSSDK3.3.0版本后，必须配置Keystore的MD5码</string>
 	
 	<string name="smssdk_error_detail_500">服务端程序报错。</string>
 	<string name="smssdk_error_detail_501">501 Not Implemented</string>

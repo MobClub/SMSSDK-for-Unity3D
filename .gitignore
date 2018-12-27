@@ -4,7 +4,7 @@ SMSSDK/Library
 */.DS_Store
 
 *.meta
-Android-SMSSDKBridge/.idea/modules.xml
+Android-SMSSDKBridge/.idea/
 SMSSDK/Assembly-CSharp-Editor-firstpass.csproj
 SMSSDK/Assembly-CSharp-firstpass.csproj
 SMSSDK/ProjectSettings/GraphicsSettings.asset
@@ -12,3 +12,4 @@ SMSSDK/SMSSDK.userprefs
 SMSSDK/ProjectSettings/ProjectSettings.asset
 SMSSDK/Assembly-CSharp.csproj
 SMSSDK/ProjectSettings/ProjectVersion.txt
+SMSSDK/.vs/

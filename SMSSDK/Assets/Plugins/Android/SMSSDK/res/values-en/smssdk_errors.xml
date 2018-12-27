@@ -47,6 +47,11 @@
 	<string name="smssdk_error_desc_481">validate API invoking wrong</string>
 	<string name="smssdk_error_desc_482">Content-Length wrong</string>
 	<string name="smssdk_error_desc_483">AppSecret wrong</string>
+	<string name="smssdk_error_desc_484">Template not exist</string>
+	<string name="smssdk_error_desc_485">Template is not verified</string>
+	<string name="smssdk_error_desc_486">Not verification code template</string>
+	<string name="smssdk_error_desc_487">Content over 60 characters</string>
+	<string name="smssdk_error_desc_489">The current md5 is not configured</string>
 	
 	<string name="smssdk_error_desc_500">Internal Server Error</string>
 	<string name="smssdk_error_desc_501">501 Not Implemented</string>
@@ -119,6 +124,11 @@
 	<string name="smssdk_error_detail_481">validate API invoking wrong</string>
 	<string name="smssdk_error_detail_482">Content-Length of network request wrong</string>
 	<string name="smssdk_error_detail_483">AppSecret wrong, data may be modified</string>
+	<string name="smssdk_error_detail_484">Template not exist, please check template code or do not specify template</string>
+	<string name="smssdk_error_detail_485">The current template id is not verified</string>
+	<string name="smssdk_error_detail_486">The specified template id is not a valid template</string>
+	<string name="smssdk_error_detail_487">The message content is over 60 characters</string>
+	<string name="smssdk_error_detail_489">The current md5 of keystore is not configured at mob console, it is required since SMSSDK 3.3.0</string>
 
 	<string name="smssdk_error_detail_500">Internal Server Error</string>
 	<string name="smssdk_error_detail_501">501 Not Implemented</string>
