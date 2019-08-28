@@ -2,7 +2,7 @@
 ### This is UnityPackage base on SMSSDK([iOS](https://github.com/MobClub/SMSSDK-for-iOS),[Android](https://github.com/MobClub/SMSSDK-for-Android)).It supports an unity plugin to use SMSSDK. [中文官网](http://sms.mob.com/).
 **supported original SMSSDK version:**
 
-- Android - V3.3.0
+- Android - V3.3.3
 - iOS - V3.2.3
 
 **中文集成文档**
