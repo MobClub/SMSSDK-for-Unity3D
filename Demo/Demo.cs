@@ -3,19 +3,19 @@ using System.Collections;
 using System;
 using cn.SMSSDK.Unity; 
 
-namespace cn.SMSSDK.Unity
-{
-	public class Demo : MonoBehaviour,SMSSDKHandler {
+
+public class Demo : MonoBehaviour,SMSSDKHandler {
 
 		// Use this for initialization
 		public GUISkin demoSkin;
 		public SMSSDK smssdk;
-		public UserInfo userInfo;
-
+		//public UserInfo userInfo;
+		public AndroidJavaClass UnityPlayer;
+		public AndroidJavaObject activity;
 		//please add your phone number
 		private string phone = "";
 		private string zone = "86";
-		private string tempCode= "1319972";
+		private string tempCode= "";
 		private string code = "";
 		private string result = null;
 
@@ -24,8 +24,7 @@ namespace cn.SMSSDK.Unity
 		{
 			Debug.Log("[SMSSDK]Demo  ===>>>  Start" );
 			smssdk = gameObject.GetComponent<SMSSDK>();
-			smssdk.init("moba6b6c6d6","b89d2427a3bc7ad1aea1e1e8c1d36bf3",true);
-			userInfo = new UserInfo ();
+			
 			smssdk.setHandler(this);
 		}
 
@@ -81,75 +80,53 @@ namespace cn.SMSSDK.Unity
 
 			btnTop += btnHeight + 10 * scale;
 
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeSMS"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "同意隐私协议"))
 			{
-				smssdk.getCode (CodeType.TextCode, phone, zone, tempCode);
+				smssdk.submitPolicyGrantResult(true);
 			}
 
 			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "CommitCode"))
+
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取短信验证码"))
+			{
+				smssdk.getCode(CodeType.TextCode, phone, zone, tempCode);
+			}
+
+			btnTop += btnHeight + 10 * scale;
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "提交验证码"))
 			{
 				smssdk.commitCode (phone, zone, code);
 			}
 
 			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCodeVoice"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取语音验证码"))
 			{
 				smssdk.getCode (CodeType.VoiceCode, phone, zone, tempCode);
 			}
 				
 			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetCountryCode"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取国家区号"))
 			{
 				smssdk.getSupportedCountryCode ();
 			}
 
 
 			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetFriends"))
-			{
-
-				smssdk.getFriends ();
-			}
-
-			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "SubmitUserInfo"))
-			{
-				userInfo.avatar = "www.mob.com";
-				userInfo.phoneNumber = phone;
-				userInfo.zone = zone;
-				userInfo.nickName = "David";
-				userInfo.uid = "1234567890";
-				smssdk.submitUserInfo (userInfo);
-			}
-
-			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "GetVersionNumber"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取SDK版本号"))
 			{
 
 				smssdk.getVersion ();
 			}
 
-			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "EnableWarn"))
-			{
-				smssdk.enableWarn (true);
-			}
-
 			//展示register UI界面
 			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "showRegisterUIView"))
+			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "弹出SDK自带UI"))
 			{
 				// 模板号可以为空
-				smssdk.showRegisterPage (CodeType.TextCode, tempCode);
+				smssdk.showRegisterPage (CodeType.TextCode, null);
 			}
 
-			//展示contractFriends UI界面
-			btnTop += btnHeight + 10 * scale;
-			if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "showContractsUIView"))
-			{
-				smssdk.showContactsPage ();
-			}
+		
 			//展示回调结果
 			btnTop += btnHeight + 10 * scale;
 			GUIStyle style=new GUIStyle();
@@ -162,54 +139,64 @@ namespace cn.SMSSDK.Unity
 		public void onComplete(int action, object resp)
 		{
 			ActionType act = (ActionType)action;
-			if (resp != null)
-			{
+			if (resp != null){
 				result = resp.ToString();
-			}
-			if (act == ActionType.GetCode) {
+			}if (act == ActionType.GetCode) {
 				string responseString = (string)resp;
 				Debug.Log ("isSmart :" + responseString);
+				showDialog("success GetCode\n" + responseString);
 			} else if (act == ActionType.GetVersion) {
 				string version = (string)resp;
 				Debug.Log ("version :" + version);
 				print ("Demo*version*********" + version);
-
+				showDialog("success GetVersion\n" + version);
 			} else if (act == ActionType.GetSupportedCountries) {
 
 				string responseString = (string)resp;
 				Debug.Log ("zoneString :" + responseString);
-
-			} else if (act == ActionType.GetFriends) {
-				string responseString = (string)resp;
-				Debug.Log ("friendsString :" + responseString);
-
-			} else if (act == ActionType.CommitCode) {
+				showDialog("success GetSupportedCountries\n" + responseString);
+			}  else if (act == ActionType.CommitCode) {
 
 				string responseString = (string)resp;
 				Debug.Log ("commitCodeString :" + responseString);
-
-			} else if (act == ActionType.SubmitUserInfo) {
-
-				string responseString = (string)resp;
-				Debug.Log ("submitString :" + responseString);
-
-			} else if (act == ActionType.ShowRegisterView) {
+				showDialog("success CommitCode\n" + responseString);
+			}  else if (act == ActionType.ShowRegisterView) {
 
 				string responseString = (string)resp;
 				Debug.Log ("showRegisterView :" + responseString);
-
-			} else if (act == ActionType.ShowContractFriendsView) {
-
-				string responseString = (string)resp;
-				Debug.Log ("showContractFriendsView :" + responseString);
+				showDialog("success ShowRegisterView\n" + responseString);
+			}else if (act == ActionType.SubmitPolicyGrantResult){
+				showDialog("success SubmitPolicyGrantResult\n" + "隐私协议提交成功");
 			}
-		}
+	}
 
 		public void onError(int action, object resp)
 		{
 			Debug.Log("Error :" + resp);
 			result = resp.ToString();
+			showDialog("onError:\n" + result);
 			print ("OnError ******resp"+resp);
 		}
-	}
+
+		public void showDialog(String msg)
+		{
+	#if UNITY_ANDROID
+			UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+			activity = UnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+			//DialogOnClickListener confirmListener = new DialogOnClickListener();
+			//confirmListener.onClickDelegate = onConfirm;
+
+			//DialogOnClickListener cancelListener = new DialogOnClickListener();
+			//cancelListener.onClickDelegate = onCancel;
+
+			AlertDialog alertDialog = new AlertDialog(activity);
+			alertDialog.setTitle("返回结果");
+			alertDialog.setMessage(msg);
+			alertDialog.setPositiveButton("确定", null);
+			//alertDialog.setNegativeButton("取消", cancelListener);//如果不需要取消后的事件处理，把cancelListener换成new DialogOnClickListener ()就行，上面也不用声明cancelListener
+			alertDialog.create();
+			alertDialog.show();
+	#endif
+		}
+
 }
