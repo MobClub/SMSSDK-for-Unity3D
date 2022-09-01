@@ -1,5 +1,5 @@
 # SMSSDK-for-Unity3D
-### This is UnityPackage base on SMSSDK([iOS](https://github.com/MobClub/SMSSDK-for-iOS),[Android](https://github.com/MobClub/SMSSDK-for-Android)).It supports an unity plugin to use SMSSDK. [中文官网](http://sms.mob.com/).
+### This is UnityPackage base on SMSSDK([iOS](https://github.com/MobClub/SMSSDK-for-iOS),[Android](https://github.com/MobClub/SMSSDK-for-Android)).It supports an unity plugin to use SMSSDK. [中文官网](https://mob.com/mobService/sms).
 **supported original SMSSDK version:**
 
 - Android - V3.3.3
@@ -7,9 +7,8 @@
 
 **中文集成文档**
 
-- [Android](http://wiki.mob.com/smssdk-android-for-unity3d/)
-- [iOS](http://wiki.mob.com/smssdk-ios-for-unity3d/
-)
+- [Android](https://mob.com/wiki/detailed?wiki=133&id=23)
+- [iOS](https://mob.com/wiki/detailed?wiki=133&id=23)
 
 - - - - -
 
@@ -78,6 +77,5 @@ Until now,the Unity party is everything ok,the next you need to import the SMSSD
 
 > * or Skype:amber
 
-More information About SMSSDK, please visit our website [Mob.com](http://www.mob.com
-
+More information About SMSSDK, please visit our website [Mob.com](http://www.mob.com)
 
