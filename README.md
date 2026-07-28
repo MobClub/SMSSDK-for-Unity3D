@@ -3,7 +3,7 @@
 **supported original SMSSDK version:**
 
 - Android - V3.3.3
-- iOS - V3.2.3
+- iOS - V3.3.7
 
 **中文集成文档**
 
