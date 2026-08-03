@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+MobSDK {
+    appKey 'moba6b6c6d6'
+    appSecret 'b89d2427a3bc7ad1aea1e1e8c1d36bf3'
+
+    SMSSDK {
+        gui false
+        mobileAuth true
+    }
+}
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "cn.smssdk.unity3d"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+//    implementation files('libs/classes.jar')
+}
+
+//生成jar包，最终目录在build文件夹的libs目录
+task generJar(dependsOn: ['assembleDebug'], type: Jar) {
+    def srcClassDir = [project.buildDir.absolutePath + "/intermediates/javac/debug/classes"];
+    from srcClassDir
+    include "**/*.class"
+    exclude "**/BuildConfig.class"
+    exclude "**/R.class"
+    exclude "cn/smssdk/R*.class"
+    exclude "cn/smssdk/unity3d/R*.class"
+    exclude "cm/**"
+//    exclude "cn/**"
+    exclude "com/**"
+    extension "jar"
+    archiveFileName = "SMSSDKUnityBridge.jar"
+}

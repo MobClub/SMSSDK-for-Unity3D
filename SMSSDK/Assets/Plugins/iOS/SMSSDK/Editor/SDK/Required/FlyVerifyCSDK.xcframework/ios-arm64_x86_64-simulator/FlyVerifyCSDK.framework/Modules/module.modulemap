@@ -1,0 +1,6 @@
+framework module FlyVerifyCSDK {
+    umbrella header "FlyVerifyCSDK.h"
+    
+    export *
+    module * { export * }
+}
