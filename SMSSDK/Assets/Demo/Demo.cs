@@ -22,7 +22,6 @@ public class Demo : MonoBehaviour, SMSSDKHandler
 
     void Start()
     {
-        Debug.Log("[SMSSDK]Demo  ===>>>  Start");
         smssdk = gameObject.GetComponent<SMSSDK>();
         smssdk.setHandler(this);
     }
@@ -88,32 +87,32 @@ public class Demo : MonoBehaviour, SMSSDKHandler
 
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "同意隐私协议"))
         {
-            smssdk.submitPolicyGrantResult(true);
+            if (smssdk != null) smssdk.submitPolicyGrantResult(true);
         }
 
         btnTop += btnHeight + 10 * scale;
 
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取短信验证码"))
         {
-            smssdk.getCode(CodeType.TextCode, phone, zone, tempCode);
+            if (smssdk != null) smssdk.getCode(CodeType.TextCode, phone, zone, tempCode);
         }
 
         btnTop += btnHeight + 10 * scale;
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "提交验证码"))
         {
-            smssdk.commitCode (phone, zone, code);
+            if (smssdk != null) smssdk.commitCode (phone, zone, code);
         }
 
         btnTop += btnHeight + 10 * scale;
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取语音验证码"))
         {
-            smssdk.getCode (CodeType.VoiceCode, phone, zone, tempCode);
+            if (smssdk != null) smssdk.getCode (CodeType.VoiceCode, phone, zone, tempCode);
         }
 
         btnTop += btnHeight + 10 * scale;
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取国家区号"))
         {
-            smssdk.getSupportedCountryCode ();
+            if (smssdk != null) smssdk.getSupportedCountryCode ();
         }
 
 
@@ -121,7 +120,7 @@ public class Demo : MonoBehaviour, SMSSDKHandler
         if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "获取SDK版本号"))
         {
 
-            smssdk.getVersion ();
+            if (smssdk != null) smssdk.getVersion ();
         }
 
         //展示回调结果

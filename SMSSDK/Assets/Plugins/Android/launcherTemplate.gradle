@@ -7,7 +7,9 @@ dependencies {
     }
 
 android {
-    compileSdkVersion **APIVERSION**
+    namespace '**APPLICATIONID**'
+    ndkPath '**NDKPATH**'
+    compileSdk **APIVERSION**
     buildToolsVersion '**BUILDTOOLS**'
 
     compileOptions {
