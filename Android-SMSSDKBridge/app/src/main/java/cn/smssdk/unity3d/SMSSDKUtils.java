@@ -16,12 +16,13 @@ import cn.smssdk.SMSSDK;
 import cn.smssdk.wrapper.TokenVerifyResult;
 
 public class SMSSDKUtils implements SMSSDKInterface{
-    private static boolean DEBUG = true;
 
+    private static boolean DEBUG = true;
     private static Context context;
     private static String u3dGameObject;
     private static String u3dCallback;
     private static TokenVerifyResult result;
+    private static EventHandler eh;
 
     public SMSSDKUtils(final String gameObject, final String callback) {
         if (DEBUG) {
@@ -39,11 +40,11 @@ public class SMSSDKUtils implements SMSSDKInterface{
             u3dCallback = callback;
         }
 
-        EventHandler eh = new EventHandler() {
+        eh = new EventHandler() {
             @Override
             public void afterEvent(int event, int result, Object data) {
                 //status       Success = 1, Fail = 2
-                HashMap<String, Object> map = new HashMap<String, Object>();
+                final HashMap<String, Object> map = new HashMap<String, Object>();
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     map.put("status", 1);
                     if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
@@ -52,23 +53,34 @@ public class SMSSDKUtils implements SMSSDKInterface{
                         map.put("action", 2);
                     } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {
                         map.put("action", 3);
-//                        if (data instanceof ArrayList) {
-//                            ArrayList a = (ArrayList) data;
-                        map.put("res", data.toString());
-//                        }
+                        map.put("res", data != null ? data.toString() : "");
                     } else if (event == SMSSDK.EVENT_GET_VOICE_VERIFICATION_CODE) {
                         map.put("action", 1);
                     }
                 } else {
                     map.put("status", 2);
-                    map.put("res", ((Throwable) data).getLocalizedMessage());
+                    map.put("action", 0);
+                    if (data instanceof Throwable) {
+                        map.put("res", ((Throwable) data).getLocalizedMessage());
+                    } else {
+                        map.put("res", data != null ? data.toString() : "error");
+                    }
                 }
-                Hashon hashon = new Hashon();
-                UnityPlayer.UnitySendMessage(u3dGameObject, u3dCallback, hashon.fromHashMap(map));
-
+                final Hashon hashon = new Hashon();
+                final String json = hashon.fromHashMap(map);
+                if (DEBUG) {
+                    Log.e("Unity", "SMSSDKUtils.afterEvent json=" + json);
+                }
+                UnityPlayer.currentActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        UnityPlayer.UnitySendMessage(u3dGameObject, u3dCallback, json);
+                    }
+                });
             }
         };
-        SMSSDK.registerEventHandler(eh); //注册短信回调
+        // 构造函数里先注册一次，适用于冷启动（隐私已授权）场景
+        SMSSDK.registerEventHandler(eh);
     }
 
     public void getCode(int type, String phone, String zone, String tempCode) {
@@ -86,9 +98,9 @@ public class SMSSDKUtils implements SMSSDKInterface{
     }
 
     public void submitPolicyGrantResult(boolean isAgree) {
-//        if (DEBUG) {
-        System.out.println("SMSSDKUtils.submitPolicyGrantResult");
-//        }
+        if (DEBUG) {
+            Log.e("Unity", "SMSSDKUtils.submitPolicyGrantResult isAgree=" + isAgree);
+        }
         final HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("action", 10);
         MobSDK.submitPolicyGrantResult(isAgree, new OperationCallback<Void>() {
@@ -96,9 +108,11 @@ public class SMSSDKUtils implements SMSSDKInterface{
             public void onComplete(Void aVoid) {
                 map.put("status", 1);//Success = 1, Fail = 2
                 map.put("res", "success");
+                // 隐私授权确认后重新注册 EventHandler，触发 SMSSDK 重新检查隐私状态并完整初始化
+                // 解决首次安装时构造函数先于隐私授权执行导致 SDK 停止 init 的问题
+                SMSSDK.registerEventHandler(eh);
                 Hashon hashon = new Hashon();
                 UnityPlayer.UnitySendMessage(u3dGameObject, u3dCallback, hashon.fromHashMap(map));
-                ;
             }
 
             @Override
@@ -107,7 +121,6 @@ public class SMSSDKUtils implements SMSSDKInterface{
                 map.put("res", throwable.getLocalizedMessage());
                 Hashon hashon = new Hashon();
                 UnityPlayer.UnitySendMessage(u3dGameObject, u3dCallback, hashon.fromHashMap(map));
-                ;
             }
         });
 
@@ -151,6 +164,7 @@ public class SMSSDKUtils implements SMSSDKInterface{
         }
         SMSSDK.submitVerificationCode(zone, phoneNumber, code);
     }
+
 
 
 //    public void enableWarn(boolean isWarn) {

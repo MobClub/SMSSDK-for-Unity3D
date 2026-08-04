@@ -1,4 +1,2 @@
-# SMSSDK Unity Bridge - 防止反射调用类被ProGuard裁剪
+# SMSSDK Unity Bridge - 必须保留类名和方法名，因为Unity通过反射调用
 -keep class cn.smssdk.unity3d.** { *; }
--keep class cn.smssdk.** { *; }
--keep class com.mob.** { *; }

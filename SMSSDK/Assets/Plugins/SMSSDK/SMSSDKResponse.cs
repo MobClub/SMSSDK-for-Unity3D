@@ -9,7 +9,7 @@ namespace cn.SMSSDK.Unity
 		public object res;
 
 		public SMSSDKResponse(Hashtable dict) {
-			if (dict != null || dict.Count != 0) {
+			if (dict != null && dict.Count != 0) {
 				this.status = Convert.ToInt32(dict["status"]);
 				this.action = Convert.ToInt32(dict["action"]);
 				this.res = dict["res"];

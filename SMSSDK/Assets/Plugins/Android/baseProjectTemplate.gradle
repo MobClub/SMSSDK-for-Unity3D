@@ -6,7 +6,8 @@ allprojects {
             google()
             jcenter()
             maven{
-                      url "https://mvn.mob.com/android"
+                url 'http://10.89.104.129:8080/job/iMaven/ws/android/'
+                allowInsecureProtocol = true
              }
 
         }
@@ -31,7 +32,8 @@ allprojects {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }
          maven{
-                      url "https://mvn.mob.com/android"
+             url 'http://10.89.104.129:8080/job/iMaven/ws/android/'
+             allowInsecureProtocol = true
              }
     }
 }
