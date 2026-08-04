@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace cn.SMSSDK.Unity {
 	public class SMSSDK : MonoBehaviour {
-		public static string version = "2.0.0";
+		public static string version = "2.0.1";
 
 		private ISMSSDK smssdkImpl;
 		private SMSSDKHandler handler;
