@@ -67,7 +67,7 @@ android {
 // MobSDK依赖注册---------------start
 apply plugin: 'com.mob.sdk'
 MobSDK {
-    appKey "2f2d7a68f8a40"  //替换为自己的appKey
+    appKey "moba6b6c6d6"  //替换为自己的appKey
     appSecret "9abee316611dd24f607feb9f2c496338"  //替换为自己的appSecret
 	fp true
 
